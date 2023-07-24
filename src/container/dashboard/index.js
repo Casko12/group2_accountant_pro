@@ -15,7 +15,7 @@ function Dashboard() {
   const PageRoutes = [
     {
       path: 'index',
-      breadcrumbName: 'Dashboard',
+      breadcrumbName: 'Home',
     },
     {
       path: 'first',

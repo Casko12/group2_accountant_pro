@@ -1,5 +1,5 @@
 {
-  "name": "HexaDash",
+  "name": "Group2_Sem3",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -71,7 +71,7 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.17.5"
   },
-  "homepage": "/hexadash-react",
+  "homepage": "/",
   "resolutions": {
     "autoprefixer": "10.4.5"
   },
@@ -104,6 +104,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.9",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
     "airbnb": "^0.0.2",
     "browserify": "^17.0.0",

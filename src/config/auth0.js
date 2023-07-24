@@ -10,7 +10,7 @@ export const auth0options = {
     redirect: false,
   },
   languageDictionary: {
-    title: 'Sign in with Auth0',
+    title: 'Sign in with Author',
   },
   popupOptions: { width: 460, height: 506, left: 200, top: 300 },
 };
