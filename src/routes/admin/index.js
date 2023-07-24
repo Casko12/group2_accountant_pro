@@ -32,6 +32,7 @@ const ContactGrid = lazy(() => import('../../container/contact/ContactGrid'));
 const ContactAddNew = lazy(() => import('../../container/contact/AddNew'));
 const Calendars = lazy(() => import('../../container/calendar/Calendar'));
 const Projects = lazy(() => import('./projects'));
+const Incomes = lazy(() => import('./incomes'));
 const Myprofile = lazy(() => import('../../container/profile/myProfile/Index'));
 const Chat = lazy(() => import('../../container/chat/ChatApp'));
 const Inbox = lazy(() => import('../../container/email/Email'));
@@ -85,6 +86,7 @@ const Admin = React.memo(() => {
         <Route path="app/calendar/*" element={<Calendars />} />
         <Route path="features/*" element={<Features />} />
         <Route path="project/*" element={<Projects />} />
+        <Route path="income/*" element={<Incomes />} />
         <Route path="profile/myProfile/*" element={<Myprofile />} />
         <Route path="ecommerce/*" element={<Ecommerce />} />
         <Route path="main/chat/*" element={<Chat />} />
