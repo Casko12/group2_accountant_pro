@@ -59,7 +59,6 @@ function ProviderConfig() {
                 <Route path="/" element={<Navigate to="/admin" />} />
               </Routes>
             )}
-            <Route path="incom" element />
           </Router>
         </>
       </ThemeProvider>
