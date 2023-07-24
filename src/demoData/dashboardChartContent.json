@@ -931,7 +931,7 @@
       {
         "key": "1",
         "img": "1.png",
-        "name": "Samsung Galaxy S8 256GB",
+        "name": "Samsung Galaxy",
         "price": "$280",
         "sold": "26",
         "revenue": "$536"
@@ -973,7 +973,7 @@
       {
         "key": "1",
         "img": "1.png",
-        "name": "Samsung Galaxy S8 256GB",
+        "name": "Samsung Galaxy",
         "price": "$280",
         "sold": "126",
         "revenue": "$38,536"
@@ -1015,7 +1015,7 @@
       {
         "key": "1",
         "img": "1.png",
-        "name": "Samsung Galaxy S8 256GB",
+        "name": "Samsung Galaxy",
         "price": "$280",
         "sold": "526",
         "revenue": "$78,536"

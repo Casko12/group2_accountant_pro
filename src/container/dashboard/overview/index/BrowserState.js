@@ -50,29 +50,44 @@ const BrowserState = React.memo(() => {
 
   const browserColumns = [
     {
-      title: 'Browsers',
-      dataIndex: 'browser',
-      key: 'browser',
+      title: 'Title',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
-      title: 'Session',
-      dataIndex: 'session',
-      key: 'session',
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
     },
     {
-      title: 'Bounce rate',
-      dataIndex: 'bounceRate',
-      key: 'bounceRate',
+      title: 'Type',
+      dataIndex: 'type',
+      key: 'type',
     },
     {
-      title: 'cte',
-      dataIndex: 'cte',
-      key: 'cte',
+      title: 'Amount',
+      dataIndex: 'price',
+      key: 'price',
     },
     {
-      title: 'goal conv. rate',
-      dataIndex: 'goalRate',
-      key: 'goalRate',
+      title: 'Date created',
+      dataIndex: 'date',
+      key: 'date',
+    },
+    {
+      title: 'Created by',
+      dataIndex: 'revenue',
+      key: 'revenue',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
+      title: 'Details',
+      dataIndex: 'details',
+      key: 'details',
     },
   ];
 
@@ -101,7 +116,7 @@ const BrowserState = React.memo(() => {
               </ul>
             </div>
           }
-          title="Browser State"
+          title="Expenses List"
           size="large"
         >
           <TableDefaultStyle className="ninjadash-having-header-bg">

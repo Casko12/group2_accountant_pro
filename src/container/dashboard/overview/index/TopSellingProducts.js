@@ -11,24 +11,44 @@ const { topSaleProduct } = topProduct;
 
 const sellingColumns = [
   {
-    title: 'Product Name',
+    title: 'Title',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Price',
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+  },
+  {
+    title: 'Type',
+    dataIndex: 'type',
+    key: 'type',
+  },
+  {
+    title: 'Amount',
     dataIndex: 'price',
     key: 'price',
   },
   {
-    title: 'Sold',
-    dataIndex: 'sold',
-    key: 'sold',
+    title: 'Date created',
+    dataIndex: 'date',
+    key: 'date',
   },
   {
-    title: 'Revenue',
+    title: 'Created by',
     dataIndex: 'revenue',
     key: 'revenue',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+  },
+  {
+    title: 'Details',
+    dataIndex: 'details',
+    key: 'details',
   },
 ];
 
@@ -94,7 +114,7 @@ const TopSellingProduct = React.memo(() => {
               </ul>
             </div>
           }
-          title="Top Selling Products"
+          title="Incomes List"
           size="large"
         >
           <TableDefaultStyle className="ninjadash-having-header-bg">
