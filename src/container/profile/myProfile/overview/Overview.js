@@ -133,7 +133,7 @@ function Overview() {
                         data: [20, 60, 50, 45, 50, 60, 70],
                         backgroundColor: '#EFEFFE',
                         hoverBackgroundColor: '#5F63F2',
-                        label: 'Orders',
+                        label: 'Total Incomes',
                         barPercentage: 1,
                       },
                     ]}

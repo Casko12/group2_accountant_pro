@@ -17,7 +17,7 @@ const ProfitGrowth = React.memo(() => {
       data: profitGrowthData.orders,
       backgroundColor: '#00AAFF50',
       hoverBackgroundColor: '#00AAFF',
-      label: 'Orders',
+      label: 'Total Income',
       average: '50.8',
       maxBarThickness: 10,
       barThickness: 12,

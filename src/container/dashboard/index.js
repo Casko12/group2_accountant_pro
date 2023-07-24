@@ -7,9 +7,9 @@ import { Main } from '../styled';
 const OverviewDataList = lazy(() => import('./overview/index/OverviewDataList'));
 const SalesReport = lazy(() => import('./overview/index/SalesReport'));
 const SalesGrowth = lazy(() => import('./overview/index/SalesGrowth'));
-const SalesByLocation = lazy(() => import('./overview/index/SalesByLocation'));
 const TopSellingProduct = lazy(() => import('./overview/index/TopSellingProducts'));
 const BrowserState = lazy(() => import('./overview/index/BrowserState'));
+const Calender = lazy(() => import('./overview/demoFive/CalendarHead'));
 
 function Dashboard() {
   const PageRoutes = [
@@ -19,7 +19,7 @@ function Dashboard() {
     },
     {
       path: 'first',
-      breadcrumbName: 'Demo 1',
+      breadcrumbName: 'Overview',
     },
   ];
   return (
@@ -69,7 +69,7 @@ function Dashboard() {
                 </Cards>
               }
             >
-              <SalesByLocation />
+              <Calender />
             </Suspense>
           </Col>
         </Row>

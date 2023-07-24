@@ -81,7 +81,7 @@ const SalesReport = React.memo(({ title }) => {
           start: 'transparent',
           end: 'transparent',
         }),
-      label: 'Total Sales',
+      label: 'Total Expenses',
       pointStyle: 'circle',
       pointRadius: '0',
       hoverRadius: '9',
@@ -185,7 +185,7 @@ const SalesReport = React.memo(({ title }) => {
 });
 
 SalesReport.defaultProps = {
-  title: 'Sales Report',
+  title: 'Revenue Report',
 };
 
 SalesReport.propTypes = {

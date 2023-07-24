@@ -25,7 +25,7 @@ function CalenderHead() {
   });
   const onChange = (date) => setState({ date });
   return (
-    <Cards title="Calendar 2022" more={moreContent}>
+    <Cards title="Calendar 2023" more={moreContent}>
       <CalendarWrapper className="ninjadash-calendar-with-head">
         <div className="ninjadash-calendar-widget">
           <CalenDar next2Label={null} prev2Label={null} onChange={onChange} value={state.date} />

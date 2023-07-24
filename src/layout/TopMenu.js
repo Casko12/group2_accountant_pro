@@ -69,7 +69,7 @@ function TopMenu() {
             <ul className="subMenu">
               <li>
                 <NavLink to={`${path}/admin`} onClick={addParentActive}>
-                  Demo 1
+                  Overview
                 </NavLink>
               </li>
               <li>

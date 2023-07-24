@@ -33,7 +33,7 @@ const SalesGrowth = React.memo(() => {
       data: salesGrowthData[sellingTab].orders,
       backgroundColor: '#C097E9',
       hoverBackgroundColor: '#8231D3',
-      label: 'Orders',
+      label: 'Total Income',
       average: '50.8',
       maxBarThickness: 10,
       barThickness: 12,
