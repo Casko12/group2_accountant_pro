@@ -1,160 +1,191 @@
-import React, { lazy, useState, Suspense } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Spin, Select } from 'antd';
-import { Routes, NavLink, Route, Link } from 'react-router-dom';
-import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
-import UilApps from '@iconscout/react-unicons/icons/uil-apps';
-import UilListUl from '@iconscout/react-unicons/icons/uil-list-ul';
-import CreateIncome from './overview/CreateIncome';
-import { ProjectHeader, ProjectSorting } from './style';
-import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { Button } from '../../components/buttons/buttons';
-import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
-import { Main } from '../styled';
+import React, { useState } from 'react';
+import { Row, Col, Form, Input, Select, InputNumber, Radio, Upload, message } from 'antd';
+import UilExport from '@iconscout/react-unicons/icons/uil-export';
+import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
+import UilDollarAlt from '@iconscout/react-unicons/icons/uil-dollar-alt';
+import UilPercentage from '@iconscout/react-unicons/icons/uil-percentage';
 import { PageHeader } from '../../components/page-headers/page-headers';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Main, BasicFormWrapper } from '../styled';
+import { Button } from '../../components/buttons/buttons';
+import { AddProductForm } from '../ecommerce/Style';
+import Heading from '../../components/heading/heading';
 
-const Grid = lazy(() => import('./overview/Grid'));
-const List = lazy(() => import('./overview/List'));
+const { Option } = Select;
+const { Dragger } = Upload;
 
 function Income() {
-  const dispatch = useDispatch();
-  const searchData = useSelector((state) => state.headerSearchData);
-
+  const PageRoutes = [
+    {
+      path: '/admin',
+      breadcrumbName: 'Dashboard',
+    },
+    {
+      path: '',
+      breadcrumbName: 'Add Income',
+    },
+  ];
+  const [form] = Form.useForm();
   const [state, setState] = useState({
-    notData: searchData,
-    visible: true,
-    categoryActive: 'all',
+    file: null,
+    list: null,
+    submitValues: {},
   });
 
-  const { notData, visible } = state;
-  const handleSearch = (searchText) => {
-    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
-    setState({
-      ...state,
-      notData: data,
-    });
+  const fileList = [
+    {
+      uid: '1',
+      name: '1.png',
+      status: 'done',
+      url: require('../../static/img/products/1.png'),
+      thumbUrl: require('../../static/img/products/1.png'),
+    },
+  ];
+
+  const fileUploadProps = {
+    name: 'file',
+    multiple: true,
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    onChange(info) {
+      const { status } = info.file;
+      if (status !== 'uploading') {
+        setState({ ...state, file: info.file, list: info.fileList });
+      }
+      if (status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    listType: 'picture',
+    defaultFileList: fileList,
+    showUploadList: {
+      showRemoveIcon: true,
+      removeIcon: <UilTrashAlt />,
+    },
   };
 
-  const onSorting = (selectedItems) => {
-    dispatch(sortingProjectByCategory(selectedItems));
+  const handleSubmit = (values) => {
+    setState({ ...state, submitValues: values });
   };
 
-  const onChangeCategory = (value) => {
-    setState({
-      ...state,
-      categoryActive: value,
-    });
-    dispatch(filterProjectByStatus(value));
-  };
-
-  const showModal = () => {
-    setState({
-      ...state,
-      visible: true,
-    });
-  };
-
-  const onCancel = () => {
-    setState({
-      ...state,
-      visible: false,
-    });
-  };
-  const path = '.';
   return (
     <>
-      <ProjectHeader>
-        <PageHeader
-          className="ninjadash-page-header-main"
-          ghost
-          title="Projects"
-          subTitle={<>12 Running Projects</>}
-          buttons={[
-            <Button onClick={showModal} key="1" type="primary" size="default">
-              <UilPlus /> Create Projects
-            </Button>,
-          ]}
-        />
-      </ProjectHeader>
+      <PageHeader className="ninjadash-page-header-main" title="Add Product" routes={PageRoutes} />
       <Main>
-        <Row gutter={25}>
+        <Row gutter={15}>
           <Col xs={24}>
-            <ProjectSorting>
-              <div className="project-sort-bar">
-                <div className="project-sort-nav">
-                  <nav>
-                    <ul>
-                      <li className={state.categoryActive === 'all' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('all')} to="#">
-                          All
-                        </Link>
-                      </li>
-                      <li className={state.categoryActive === 'progress' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('progress')} to="#">
-                          In Progress
-                        </Link>
-                      </li>
-                      <li className={state.categoryActive === 'complete' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('complete')} to="#">
-                          Complete
-                        </Link>
-                      </li>
-                      <li className={state.categoryActive === 'late' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('late')} to="#">
-                          Late
-                        </Link>
-                      </li>
-                      <li className={state.categoryActive === 'early' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('early')} to="#">
-                          Early
-                        </Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-                <div className="project-sort-search">
-                  <AutoComplete onSearch={handleSearch} dataSource={notData} placeholder="Search projects" patterns />
-                </div>
-                <div className="project-sort-group">
-                  <div className="sort-group">
-                    <span>Sort By:</span>
-                    <Select onChange={onSorting} defaultValue="category">
-                      <Select.Option value="category">Project Category</Select.Option>
-                      <Select.Option value="rate">Top Rated</Select.Option>
-                      <Select.Option value="popular">Popular</Select.Option>
-                      <Select.Option value="time">Newest</Select.Option>
-                      <Select.Option value="price">Price</Select.Option>
-                    </Select>
-                    <div className="layout-style">
-                      <NavLink to={`${path}/grid`}>
-                        <UilApps />
-                      </NavLink>
-                      <NavLink to={`${path}/list`}>
-                        <UilListUl />
-                      </NavLink>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ProjectSorting>
-            <div>
-              <Suspense
-                fallback={
-                  <div className="spin">
-                    <Spin />
-                  </div>
-                }
-              >
-                <Routes>
-                  <Route index element={<Grid />} />
-                  <Route path="grid" element={<Grid />} />
-                  <Route path="list" element={<List />} />
-                </Routes>
-              </Suspense>
-            </div>
+            <Cards headless>
+              <Row gutter={25} justify="center">
+                <Col xxl={12} md={18} xs={24}>
+                  <AddProductForm>
+                    <Form style={{ width: '100%' }} form={form} name="addProduct" onFinish={handleSubmit}>
+                      <BasicFormWrapper>
+                        <div className="add-product-block">
+                          <Row gutter={15}>
+                            <Col xs={24}>
+                              <div className="add-product-content">
+                                <Cards title="About Product">
+                                  <Form.Item name="name" label="Product Name">
+                                    <Input />
+                                  </Form.Item>
+                                  <Form.Item name="subtext" label="Sub Text">
+                                    <Input />
+                                  </Form.Item>
+                                  <Form.Item name="category" initialValue="" label="Category">
+                                    <Select style={{ width: '100%' }}>
+                                      <Option value="">Please Select</Option>
+                                      <Option value="wearingClothes">Wearing Clothes</Option>
+                                      <Option value="sunglasses">Sunglasses</Option>
+                                      <Option value="t-shirt">T-Shirt</Option>
+                                    </Select>
+                                  </Form.Item>
+
+                                  <Form.Item name="price" label="Price">
+                                    <div className="input-prepend-wrap">
+                                      <span className="input-prepend">
+                                        <UilDollarAlt />
+                                      </span>
+                                      <InputNumber style={{ width: '100%' }} />
+                                    </div>
+                                  </Form.Item>
+
+                                  <Form.Item name="discount" label="Discount">
+                                    <div className="input-prepend-wrap">
+                                      <span className="input-prepend f">
+                                        <UilPercentage />
+                                      </span>
+                                      <InputNumber style={{ width: '100%' }} />
+                                    </div>
+                                  </Form.Item>
+
+                                  <Form.Item name="status" label="Status">
+                                    <Radio.Group>
+                                      <Radio value="Published">Published</Radio>
+                                      <Radio value="Draft">Draft</Radio>
+                                    </Radio.Group>
+                                  </Form.Item>
+
+                                  <Form.Item name="description" label="Product Description">
+                                    <Input.TextArea rows={5} />
+                                  </Form.Item>
+                                  <Form.Item name="mTitle" label="Meta Title">
+                                    <Input />
+                                  </Form.Item>
+                                  <Form.Item name="mKeyword" label="Meta Keyword">
+                                    <Input />
+                                  </Form.Item>
+                                </Cards>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+
+                        <div className="add-product-block">
+                          <Row gutter={15}>
+                            <Col xs={24}>
+                              <div className="add-product-content">
+                                <Cards title="Product Image">
+                                  <Dragger {...fileUploadProps}>
+                                    <p className="ant-upload-drag-icon">
+                                      <UilExport />
+                                    </p>
+                                    <Heading as="h4" className="ant-upload-text">
+                                      Drag and drop an image
+                                    </Heading>
+                                    <p className="ant-upload-hint">
+                                      or <span>Browse</span> to choose a file
+                                    </p>
+                                  </Dragger>
+                                </Cards>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+                        <div className="add-form-action">
+                          <Form.Item>
+                            <Button
+                              className="btn-cancel"
+                              size="large"
+                              onClick={() => {
+                                return form.resetFields();
+                              }}
+                            >
+                              Cancel
+                            </Button>
+                            <Button size="large" htmlType="submit" type="primary" raised>
+                              Save Product
+                            </Button>
+                          </Form.Item>
+                        </div>
+                      </BasicFormWrapper>
+                    </Form>
+                  </AddProductForm>
+                </Col>
+              </Row>
+            </Cards>
           </Col>
         </Row>
-        <CreateIncome onCancel={onCancel} visible={visible} />
       </Main>
     </>
   );

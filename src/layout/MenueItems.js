@@ -75,7 +75,7 @@ function MenuItems({ toggleCollapsed }) {
 
   const dispatch = useDispatch();
 
-  const path = '/admin';
+  const path = '/admin/';
 
   const pathName = window.location.pathname;
   const pathArray = pathName ? pathName.split(path) : [];

@@ -27,7 +27,7 @@ function SignIn() {
 
   const handleSubmit = useCallback(
     (values) => {
-      dispatch(login(values, () => navigate('/admin')));
+      dispatch(login(values, () => navigate('/')));
     },
     [navigate, dispatch],
   );

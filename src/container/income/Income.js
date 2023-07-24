@@ -67,11 +67,11 @@ function Income() {
         <PageHeader
           className="ninjadash-page-header-main"
           ghost
-          title="Projects"
+          title="Incomes"
           subTitle={<>12 Running Projects</>}
           buttons={[
             <Button onClick={showModal} key="1" type="primary" size="default">
-              <UilPlus /> Create Projects
+              <UilPlus /> Create Income
             </Button>,
           ]}
         />

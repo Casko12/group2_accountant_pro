@@ -44,7 +44,7 @@ function IncomeLists() {
         income: (
           <ProjectListTitle>
             <Heading as="h4">
-              <Link to={`/admin/project/projectDetails/${id}`}>{title}</Link>
+              <Link to={`/income/incomeDetails/${id}`}>{title}</Link>
             </Heading>
 
             <p>{category}</p>

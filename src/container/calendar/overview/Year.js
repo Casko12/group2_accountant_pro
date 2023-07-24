@@ -80,7 +80,7 @@ function YearCalendar() {
     dispatch(addNewEvents([...events, { ...event, id: max + 1 }]));
     dispatch(eventVisible(false));
   };
-  const path = '/admin/app/calendar';
+  const path = '/app/calendar';
   return (
     <Cards headless>
       <Modal

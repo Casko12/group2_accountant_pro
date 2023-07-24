@@ -33,7 +33,7 @@ export const eventContext = React.createContext();
 function Calendars() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/',
       breadcrumbName: 'Dashboard',
     },
     {

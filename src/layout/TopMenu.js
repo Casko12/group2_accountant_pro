@@ -26,7 +26,7 @@ import {
 import { TopMenuStyle } from './Style';
 
 function TopMenu() {
-  const path = '/admin';
+  const path = '/';
 
   useLayoutEffect(() => {
     const active = document.querySelector('.ninjadash-top-menu a.active');
@@ -68,7 +68,7 @@ function TopMenu() {
             </Link>
             <ul className="subMenu">
               <li>
-                <NavLink to={`${path}/admin`} onClick={addParentActive}>
+                <NavLink to={`${path}/`} onClick={addParentActive}>
                   Overview
                 </NavLink>
               </li>
