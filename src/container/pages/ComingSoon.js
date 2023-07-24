@@ -123,7 +123,7 @@ function ComingSoon() {
                       </Link>
                     </li>
                   </ul>
-                  <p>2022 © Sovware</p>
+                  <p>2023 © Nhóm 2-T2203E</p>
                 </div>
               </Cards>
             </ComingsoonStyleWrapper>
