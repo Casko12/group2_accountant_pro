@@ -90,12 +90,23 @@ const CardFrame = Styled(Card)`
         &.early{
           background: ${({ theme }) => theme['primary-color']}
         }
+        &.canceled{
+          background: ${({ theme }) => theme['primary-color']}
+        }
         &.late{
+          background: ${({ theme }) => theme[theme.mainContent].Warning}
+        }
+        &.pending{
           background: ${({ theme }) => theme[theme.mainContent].Warning}
         }
         &.complete{
           background: ${({ theme }) => theme[theme.mainContent].success}
         }
+        &.accepted{
+          background: ${({ theme }) => theme[theme.mainContent].success}
+        }
+        &.denied{
+          background: ${({ theme }) => theme[theme.mainContent].danger}
         &.progress{
           background: ${({ theme }) => theme[theme.mainContent].danger}
         }

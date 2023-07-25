@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Progress, Pagination, Tag } from 'antd';
+import { Row, Col, Table, Pagination, Tag } from 'antd';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import Heading from '../../../components/heading/heading';
 import { Cards } from '../../../components/cards/frame/cards-frame';
-import { ProjectPagination, ProjectListTitle, ProjectListAssignees, ProjectList } from '../style';
+import { ProjectPagination, ProjectListTitle, ProjectList } from '../style';
 import { Dropdown } from '../../../components/dropdown/dropdown';
 
 function IncomeLists() {
-  const income = useSelector((state) => state.incomes.data);
+  const income = useSelector((state) => state.projects.data);
   const [state, setState] = useState({
     incomes: income,
     current: 0,
@@ -38,54 +38,21 @@ function IncomeLists() {
 
   if (incomes.length)
     incomes.map((value) => {
-      const { id, title, status, category, percentage } = value;
+      const { id, name, date, type, amount, userId, status } = value;
       return dataSource.push({
         key: id,
         income: (
           <ProjectListTitle>
             <Heading as="h4">
-              <Link to={`/income/incomeDetails/${id}`}>{title}</Link>
+              <Link to={`/income/incomeDetails/${id}`}>{name}</Link>
             </Heading>
-
-            <p>{category}</p>
           </ProjectListTitle>
         ),
-        startDate: <span className="date-started">26 Dec 2019</span>,
-        deadline: <span className="date-finished">18 Mar 2020</span>,
-        assigned: (
-          <ProjectListAssignees>
-            <ul>
-              <li>
-                <img src={require(`../../../static/img/users/1.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/2.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/3.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/4.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/5.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/6.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/7.png`)} alt="" />
-              </li>
-            </ul>
-          </ProjectListAssignees>
-        ),
+        date: <Tag className={date}>{date}</Tag>,
+        type: <Tag className={type}>{type}</Tag>,
+        amount: <Tag className={amount}>{amount}</Tag>,
+        userId: <Tag className={userId}>{userId}</Tag>,
         status: <Tag className={status}>{status}</Tag>,
-        completion: (
-          <div className="project-list-progress">
-            <Progress percent={status === 'complete' ? 100 : percentage} strokeWidth={5} className="progress-primary" />
-            <p>12/15 Task Completed</p>
-          </div>
-        ),
         action: (
           <Dropdown
             className="wide-dropdwon"
@@ -108,35 +75,34 @@ function IncomeLists() {
   const columns = [
     {
       title: 'Title',
-      dataIndex: 'project',
-      key: 'project',
+      dataIndex: 'income',
+      key: 'income',
     },
     {
-      title: 'Start Date',
-      dataIndex: 'startDate',
-      key: 'startDate',
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
     },
     {
-      title: 'Deadline',
-      dataIndex: 'deadline',
-      key: 'deadline',
+      title: 'Category',
+      dataIndex: 'type',
+      key: 'type',
     },
     {
-      title: 'Assigned To',
-      dataIndex: 'assigned',
-      key: 'assigned',
+      title: 'Amount',
+      dataIndex: 'amount',
+      key: 'amount',
+    },
+    {
+      title: 'Created By',
+      dataIndex: 'userId',
+      key: 'userId',
     },
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
     },
-    {
-      title: 'Completion',
-      dataIndex: 'completion',
-      key: 'completion',
-    },
-
     {
       title: '',
       dataIndex: 'action',
