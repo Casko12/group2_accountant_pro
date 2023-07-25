@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, Select, InputNumber, Radio, Upload, message } from 'antd';
+import { Row, Col, Form, Input, Select, InputNumber, Upload, message, DatePicker } from 'antd';
 import UilExport from '@iconscout/react-unicons/icons/uil-export';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import UilDollarAlt from '@iconscout/react-unicons/icons/uil-dollar-alt';
-import UilPercentage from '@iconscout/react-unicons/icons/uil-percentage';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main, BasicFormWrapper } from '../styled';
@@ -13,6 +12,7 @@ import Heading from '../../components/heading/heading';
 
 const { Option } = Select;
 const { Dragger } = Upload;
+const dateFormat = 'MM/DD/YYYY';
 
 function Income() {
   const PageRoutes = [
@@ -71,7 +71,7 @@ function Income() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Add Product" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="Add Income" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -79,61 +79,37 @@ function Income() {
               <Row gutter={25} justify="center">
                 <Col xxl={12} md={18} xs={24}>
                   <AddProductForm>
-                    <Form style={{ width: '100%' }} form={form} name="addProduct" onFinish={handleSubmit}>
+                    <Form style={{ width: '100%' }} form={form} name="addIncome" onFinish={handleSubmit}>
                       <BasicFormWrapper>
                         <div className="add-product-block">
                           <Row gutter={15}>
                             <Col xs={24}>
                               <div className="add-product-content">
-                                <Cards title="About Product">
-                                  <Form.Item name="name" label="Product Name">
+                                <Cards title="Add new Income">
+                                  <Form.Item name="name" label="Title">
                                     <Input />
                                   </Form.Item>
-                                  <Form.Item name="subtext" label="Sub Text">
-                                    <Input />
+                                  <Form.Item name="date" label="Date">
+                                    <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                                  </Form.Item>
+                                  <Form.Item name="description" label="Description">
+                                    <Input.TextArea rows={5} />
                                   </Form.Item>
                                   <Form.Item name="category" initialValue="" label="Category">
                                     <Select style={{ width: '100%' }}>
                                       <Option value="">Please Select</Option>
-                                      <Option value="wearingClothes">Wearing Clothes</Option>
-                                      <Option value="sunglasses">Sunglasses</Option>
-                                      <Option value="t-shirt">T-Shirt</Option>
+                                      <Option value="wearingClothes">Loai 1</Option>
+                                      <Option value="sunglasses">Loai 2</Option>
+                                      <Option value="t-shirt">Loai 3</Option>
                                     </Select>
                                   </Form.Item>
-
-                                  <Form.Item name="price" label="Price">
+                                  <Form.Item name="amount" label="Amount">
                                     <div className="input-prepend-wrap">
                                       <span className="input-prepend">
                                         <UilDollarAlt />
                                       </span>
                                       <InputNumber style={{ width: '100%' }} />
                                     </div>
-                                  </Form.Item>
-
-                                  <Form.Item name="discount" label="Discount">
-                                    <div className="input-prepend-wrap">
-                                      <span className="input-prepend f">
-                                        <UilPercentage />
-                                      </span>
-                                      <InputNumber style={{ width: '100%' }} />
-                                    </div>
-                                  </Form.Item>
-
-                                  <Form.Item name="status" label="Status">
-                                    <Radio.Group>
-                                      <Radio value="Published">Published</Radio>
-                                      <Radio value="Draft">Draft</Radio>
-                                    </Radio.Group>
-                                  </Form.Item>
-
-                                  <Form.Item name="description" label="Product Description">
-                                    <Input.TextArea rows={5} />
-                                  </Form.Item>
-                                  <Form.Item name="mTitle" label="Meta Title">
-                                    <Input />
-                                  </Form.Item>
-                                  <Form.Item name="mKeyword" label="Meta Keyword">
-                                    <Input />
                                   </Form.Item>
                                 </Cards>
                               </div>
@@ -145,7 +121,7 @@ function Income() {
                           <Row gutter={15}>
                             <Col xs={24}>
                               <div className="add-product-content">
-                                <Cards title="Product Image">
+                                <Cards title="Upload Document(s)">
                                   <Dragger {...fileUploadProps}>
                                     <p className="ant-upload-drag-icon">
                                       <UilExport />

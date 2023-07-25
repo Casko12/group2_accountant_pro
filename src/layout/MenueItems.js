@@ -435,13 +435,6 @@ function MenuItems({ toggleCollapsed }) {
     ]),
     getItem(t('income'), 'income', !topMenu && <UilBagAlt />, [
       getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/income/view/grid`}>
-          {t('income')} {t('grid')}
-        </NavLink>,
-        'incomeGrid',
-        null,
-      ),
-      getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/income/view/list`}>
           {t('income')} {t('list')}
         </NavLink>,
@@ -453,13 +446,6 @@ function MenuItems({ toggleCollapsed }) {
           {t('create')} {t('income')}
         </NavLink>,
         'IncomeCreate',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/project/incomeDetails/1/tasklist`}>
-          {t('income')} {t('details')}
-        </NavLink>,
-        'incomeDetails',
         null,
       ),
     ]),
