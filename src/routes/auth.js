@@ -12,7 +12,7 @@ const FbSignUp = lazy(() => import('../container/profile/authentication/overview
 const AuthRoot = () => {
   const navigate = useNavigate();
 
-  useEffect(() => navigate('/'));
+  useEffect(() => navigate('/admin'));
 };
 
 const FrontendRoutes = React.memo(() => {
