@@ -48,10 +48,10 @@ function IncomeLists() {
             </Heading>
           </ProjectListTitle>
         ),
-        date: <Tag className={date}>{date}</Tag>,
-        type: <Tag className={type}>{type}</Tag>,
-        amount: <Tag className={amount}>{amount}</Tag>,
-        userId: <Tag className={userId}>{userId}</Tag>,
+        date: { date },
+        type: { type },
+        amount: { amount },
+        userId: { userId },
         status: <Tag className={status}>{status}</Tag>,
         action: (
           <Dropdown

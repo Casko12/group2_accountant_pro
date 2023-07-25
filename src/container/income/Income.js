@@ -89,23 +89,23 @@ function Income() {
                           All
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'progress' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('progress')} to="#">
+                      <li className={state.categoryActive === 'accepted' ? 'active' : 'deactivate'}>
+                        <Link onClick={() => onChangeCategory('accepted')} to="#">
                           In Progress
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'complete' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('complete')} to="#">
+                      <li className={state.categoryActive === 'pending' ? 'active' : 'deactivate'}>
+                        <Link onClick={() => onChangeCategory('pending')} to="#">
                           Complete
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'late' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('late')} to="#">
+                      <li className={state.categoryActive === 'denied' ? 'active' : 'deactivate'}>
+                        <Link onClick={() => onChangeCategory('denied')} to="#">
                           Late
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'early' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('early')} to="#">
+                      <li className={state.categoryActive === 'canceled' ? 'active' : 'deactivate'}>
+                        <Link onClick={() => onChangeCategory('canceled')} to="#">
                           Early
                         </Link>
                       </li>

@@ -344,13 +344,25 @@ const ProjectCard = Styled.div`
                 &.early{
                     background: ${({ theme }) => theme['primary-color']};
                 }
+                &.canceled{
+                    background: ${({ theme }) => theme['primary-color']};
+                }
                 &.progress{
+                    background: #FF4D4F;
+                }
+                &.pending{
                     background: #FF4D4F;
                 }
                 &.late{
                     background: ${({ theme }) => theme['warning-color']};
                 }
+                &.canceled{
+                    background: ${({ theme }) => theme['warning-color']};
+                }
                 &.complete{
+                    background: ${({ theme }) => theme['success-color']};
+                }
+                &.accepted{
                     background: ${({ theme }) => theme['success-color']};
                 }
             }
