@@ -1,19 +1,15 @@
 import {
   Uil500px,
-  UilAt,
   UilBagAlt,
   UilBookReader,
   UilCalendarAlt,
-  UilChat,
   UilCheckSquare,
   UilClipboardAlt,
   UilCreateDashboard,
-  UilEnvelope,
   UilExchange,
   UilFile,
   UilHeadphones,
   UilShoppingCart,
-  UilUsersAlt,
 } from '@iconscout/react-unicons';
 import { Menu } from 'antd';
 import React from 'react';
@@ -80,33 +76,6 @@ function MenuItems({ toggleCollapsed }) {
       null,
       null,
       'group',
-    ),
-    getItem(t('email'), 'email', !topMenu && <UilEnvelope />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/email/inbox`}>
-          {t('inbox')}
-        </NavLink>,
-        'inbox',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/email/single/1585118055048`}>
-          {t('read')} {t('email')}
-        </NavLink>,
-        'single',
-        null,
-      ),
-    ]),
-    getItem(
-      <NavLink onClick={toggleCollapsed} to={`${path}/main/chat/private/rofiq@gmail.com`}>
-        {t('chat')}
-      </NavLink>,
-      'chat',
-      !topMenu && (
-        <NavLink className="menuItem-iocn" to={`${path}/main/chat/private/rofiq@gmail.com`}>
-          <UilChat />
-        </NavLink>
-      ),
     ),
     getItem(t('eCommerce'), 'ecommerce', !topMenu && <UilShoppingCart />, [
       getItem(
@@ -262,73 +231,7 @@ function MenuItems({ toggleCollapsed }) {
         </NavLink>
       ),
     ),
-    getItem(t('users'), 'users', !topMenu && <UilUsersAlt />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/team`}>
-          {t('team')}
-        </NavLink>,
-        'team',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/grid`}>
-          {t('users')} {t('grid')}
-        </NavLink>,
-        'user-grid',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/list`}>
-          {t('users')} {t('list')}
-        </NavLink>,
-        'user-list',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/grid-style`}>
-          {t('users')} {t('grid')} {t('style')}
-        </NavLink>,
-        'grid-style',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/add-user/info`}>
-          {t('add')} {t('user')}
-        </NavLink>,
-        'addUser',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/users/dataTable`}>
-          {t('users')} {t('table')}
-        </NavLink>,
-        'user-dataTable',
-        null,
-      ),
-    ]),
-    getItem(t('contact'), 'contact', !topMenu && <UilAt />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/contact/grid`}>
-          {t('contact')} {t('grid')}
-        </NavLink>,
-        'contact-grid',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/contact/list`}>
-          {t('contact')} {t('list')}
-        </NavLink>,
-        'contact-list',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/contact/addNew`}>
-          {t('contact')} {t('create')}
-        </NavLink>,
-        'addNew',
-        null,
-      ),
-    ]),
+
     getItem(
       <NavLink onClick={toggleCollapsed} to={`${path}/app/note/all`}>
         {t('note')}

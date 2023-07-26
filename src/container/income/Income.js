@@ -2,11 +2,13 @@ import React, { lazy, useState, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Spin, Select } from 'antd';
 import { Routes, NavLink, Route, Link } from 'react-router-dom';
+import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
 import UilApps from '@iconscout/react-unicons/icons/uil-apps';
 import UilListUl from '@iconscout/react-unicons/icons/uil-list-ul';
 import CreateIncome from './overview/CreateIncome';
 import { ProjectHeader, ProjectSorting } from './style';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { Button } from '../../components/buttons/buttons';
 import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
 import { Main } from '../styled';
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -45,13 +47,6 @@ function Income() {
     dispatch(filterProjectByStatus(value));
   };
 
-  // const showModal = () => {
-  //   setState({
-  //     ...state,
-  //     visible: true,
-  //   });
-  // };
-
   const onCancel = () => {
     setState({
       ...state,
@@ -67,11 +62,11 @@ function Income() {
           ghost
           title="Incomes"
           subTitle={<>Income List</>}
-          // buttons={[
-          //   <Button onClick={showModal} key="2" type="primary" size="default">
-          //     <UilPlus /> Create Income
-          //   </Button>,
-          // ]}
+          buttons={[
+            <Button type="primary" size="default">
+              <UilPlus /> Create Income
+            </Button>,
+          ]}
         />
       </ProjectHeader>
       <Main>
@@ -111,7 +106,7 @@ function Income() {
                   </nav>
                 </div>
                 <div className="project-sort-search">
-                  <AutoComplete onSearch={handleSearch} dataSource={notData} placeholder="Search projects" patterns />
+                  <AutoComplete onSearch={handleSearch} dataSource={notData} placeholder="Search income" patterns />
                 </div>
                 <div className="project-sort-group">
                   <div className="sort-group">
