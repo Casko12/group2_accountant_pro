@@ -9,7 +9,7 @@ import { ProjectPagination, ProjectListTitle, ProjectList } from '../style';
 import { Dropdown } from '../../../components/dropdown/dropdown';
 
 function IncomeLists() {
-  const income = useSelector((state) => state.projects.data);
+  const income = useSelector((state) => state.incomes.data);
   const [state, setState] = useState({
     incomes: income,
     current: 0,
