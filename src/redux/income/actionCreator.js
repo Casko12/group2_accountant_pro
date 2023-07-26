@@ -15,21 +15,14 @@ const {
   sortingIncomeErr,
 } = actions;
 
-const fetchData = async () => {
-  const response = await DataService.get('your-api-path');
-  return response.data;
-};
 const filterSinglePage = (paramsId) => {
   return async (dispatch) => {
     try {
       dispatch(singleIncomeBegin());
-      const initialState = await fetchData();
-      const data = initialState.filter((project) => {
-        return project.id === parseInt(paramsId, 10);
-      });
-      dispatch(singleIncomeSuccess(data));
+      const response = await DataService.get(`incomes/get-by-id?id=${paramsId}`);
+      dispatch(singleIncomeSuccess(response.data));
     } catch (err) {
-      dispatch(singleIncomeErr(err));
+      dispatch(singleIncomeErr(err.message));
     }
   };
 };
@@ -38,16 +31,10 @@ const filterIncomeByStatus = (status) => {
   return async (dispatch) => {
     try {
       dispatch(filterIncomeBegin());
-      const initialState = await fetchData();
-      const data = initialState.filter((project) => {
-        if (status !== 'all') {
-          return project.status === status;
-        }
-        return initialState;
-      });
-      dispatch(filterIncomeSuccess(data));
+      const response = await DataService.get(`incomes/get-by-status?status=${status}`);
+      dispatch(filterIncomeSuccess(response.data));
     } catch (err) {
-      dispatch(filterIncomeErr(err.toString()));
+      dispatch(filterIncomeErr(err.message));
     }
   };
 };
@@ -56,16 +43,12 @@ const sortingIncomeByCategory = (sortBy) => {
   return async (dispatch) => {
     try {
       dispatch(sortingIncomeBegin());
-      const initialState = await fetchData();
-      const data = initialState.sort((a, b) => {
-        return b[sortBy] - a[sortBy];
-      });
-
+      const response = await DataService.get(`incomes/sort-by/${sortBy}`);
       setTimeout(() => {
-        dispatch(sortingIncomeSuccess(data));
+        dispatch(sortingIncomeSuccess(response.data));
       }, 500);
     } catch (err) {
-      dispatch(sortingIncomeErr(err));
+      dispatch(sortingIncomeErr(err.message));
     }
   };
 };

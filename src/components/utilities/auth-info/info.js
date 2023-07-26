@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 import { InfoWraper, NavAuth, UserDropDwon } from './auth-info-style';
 import Message from './Message';
 import Notification from './Notification';
@@ -30,13 +30,11 @@ const AuthInfo = React.memo(() => {
   const Profile = async () => {
     try {
       const u = await dispatch(getProfile());
-      console.log(u);
+
       setUser(u);
     } catch (error) {
-      console.error(error);
-      // Handle error here
+      toast.error(error.Message);
     }
-    console.log(user);
   };
   useEffect(() => {
     Profile();
