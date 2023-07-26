@@ -59,7 +59,7 @@ function CreateExpense({ visible, onCancel }) {
       title="Create Expense"
       visible={state.visible}
       footer={[
-        <div key="1" className="project-modal-footer">
+        <div key="3" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
             Add New Expense
           </Button>

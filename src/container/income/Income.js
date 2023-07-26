@@ -2,13 +2,11 @@ import React, { lazy, useState, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Spin, Select } from 'antd';
 import { Routes, NavLink, Route, Link } from 'react-router-dom';
-import UilPlus from '@iconscout/react-unicons/icons/uil-plus';
 import UilApps from '@iconscout/react-unicons/icons/uil-apps';
 import UilListUl from '@iconscout/react-unicons/icons/uil-list-ul';
 import CreateIncome from './overview/CreateIncome';
 import { ProjectHeader, ProjectSorting } from './style';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { Button } from '../../components/buttons/buttons';
 import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
 import { Main } from '../styled';
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -47,12 +45,12 @@ function Income() {
     dispatch(filterProjectByStatus(value));
   };
 
-  const showModal = () => {
-    setState({
-      ...state,
-      visible: true,
-    });
-  };
+  // const showModal = () => {
+  //   setState({
+  //     ...state,
+  //     visible: true,
+  //   });
+  // };
 
   const onCancel = () => {
     setState({
@@ -68,12 +66,12 @@ function Income() {
           className="ninjadash-page-header-main"
           ghost
           title="Incomes"
-          subTitle={<>12 Running Projects</>}
-          buttons={[
-            <Button onClick={showModal} key="1" type="primary" size="default">
-              <UilPlus /> Create Income
-            </Button>,
-          ]}
+          subTitle={<>Income List</>}
+          // buttons={[
+          //   <Button onClick={showModal} key="2" type="primary" size="default">
+          //     <UilPlus /> Create Income
+          //   </Button>,
+          // ]}
         />
       </ProjectHeader>
       <Main>
@@ -119,11 +117,11 @@ function Income() {
                   <div className="sort-group">
                     <span>Sort By:</span>
                     <Select onChange={onSorting} defaultValue="category">
-                      <Select.Option value="category">Project Category</Select.Option>
-                      <Select.Option value="rate">Top Rated</Select.Option>
-                      <Select.Option value="popular">Popular</Select.Option>
-                      <Select.Option value="time">Newest</Select.Option>
-                      <Select.Option value="price">Price</Select.Option>
+                      <Select.Option value="category">Income Category</Select.Option>
+                      <Select.Option value="rate">Loai 1</Select.Option>
+                      <Select.Option value="popular">Loai 2</Select.Option>
+                      <Select.Option value="time">Loai 3</Select.Option>
+                      <Select.Option value="price">Loai 4</Select.Option>
                     </Select>
                     <div className="layout-style">
                       <NavLink to={`${path}/grid`}>

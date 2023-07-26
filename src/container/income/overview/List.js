@@ -38,7 +38,7 @@ function IncomeLists() {
 
   if (incomes.length)
     incomes.map((value) => {
-      const { id, name, date, type, amount, userId, status } = value;
+      const { id, name, /* date, */ type, amount, userId, status } = value;
       return dataSource.push({
         key: id,
         income: (
@@ -48,7 +48,7 @@ function IncomeLists() {
             </Heading>
           </ProjectListTitle>
         ),
-        date: { date },
+        // date: { date },
         type: { type },
         amount: { amount },
         userId: { userId },
