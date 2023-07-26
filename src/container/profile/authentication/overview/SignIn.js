@@ -57,12 +57,11 @@ function SignIn() {
               <Form.Item
                 name="email"
                 rules={[{ message: 'Please input your username or Email!', required: true }]}
-                initialValue="ninjadash@dm.com"
                 label="Username or Email Address"
               >
                 <Input placeholder="name@example.com" />
               </Form.Item>
-              <Form.Item name="password" initialValue="123456" label="Password">
+              <Form.Item name="password" label="Password">
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <div className="ninjadash-auth-extra-links">
