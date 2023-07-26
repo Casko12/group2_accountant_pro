@@ -6,7 +6,7 @@ import UilSignout from '@iconscout/react-unicons/icons/uil-signout';
 import UilUser from '@iconscout/react-unicons/icons/uil-user';
 import UilUsersAlt from '@iconscout/react-unicons/icons/uil-users-alt';
 import { Avatar } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import Message from './Message';
 import Notification from './Notification';
 import Search from './Search';
 import Settings from './settings';
-import { logOut } from '../../../redux/authentication/actionCreator';
+import { logOut, getProfile } from '../../../redux/authentication/actionCreator';
 
 import { Dropdown } from '../../dropdown/dropdown';
 import Heading from '../../heading/heading';
@@ -24,6 +24,23 @@ import { Popover } from '../../popup/popup';
 
 const AuthInfo = React.memo(() => {
   const dispatch = useDispatch();
+
+  const [user, setUser] = useState({});
+
+  const Profile = async () => {
+    try {
+      const u = await dispatch(getProfile());
+      console.log(u);
+      setUser(u);
+    } catch (error) {
+      console.error(error);
+      // Handle error here
+    }
+    console.log(user);
+  };
+  useEffect(() => {
+    Profile();
+  }, []);
 
   const [state, setState] = useState({
     flag: 'en',
@@ -125,7 +142,7 @@ const AuthInfo = React.memo(() => {
         <Popover placement="bottomRight" content={userContent} action="click">
           <Link to="#" className="ninjadash-nav-action-link">
             <Avatar src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png" />
-            <span className="ninjadash-nav-actions__author--name">Md. Rafiq</span>
+            <span className="ninjadash-nav-actions__author--name">{user.name}</span>
             <UilAngleDown />
           </Link>
         </Popover>

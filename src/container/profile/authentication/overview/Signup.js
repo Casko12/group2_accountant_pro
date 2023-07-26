@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { Row, Col, Form, Input, Button, DatePicker } from 'antd';
 import UilFacebook from '@iconscout/react-unicons/icons/uil-facebook-f';
 import UilTwitter from '@iconscout/react-unicons/icons/uil-twitter';
 import UilGithub from '@iconscout/react-unicons/icons/uil-github';
@@ -35,11 +35,11 @@ function SignUp() {
           </div>
           <div className="ninjadash-authentication-content">
             <Form name="register" onFinish={handleSubmit} layout="vertical">
-              <Form.Item label="Name" name="Name" rules={[{ required: true, message: 'Please input your Full name!' }]}>
+              <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input your Full name!' }]}>
                 <Input placeholder="Full name" />
               </Form.Item>
               <Form.Item
-                name="Email"
+                name="email"
                 label="Email Address"
                 rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
               >
@@ -47,45 +47,57 @@ function SignUp() {
               </Form.Item>
               <Form.Item
                 label="Password"
-                name="Password"
+                name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
               >
                 <Input.Password placeholder="Password" />
               </Form.Item>
-              {/* <Form.Item
+              <Form.Item
+                name="confirmPassword"
                 label="Confirm Password"
-                name="confirmpassword"
-                rules={[{ required: true, message: 'Please input your Confirmpassword!' }]}
+                dependencies={['password']}
+                rules={[
+                  { required: true, message: 'Please confirm your password!' },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                    },
+                  }),
+                ]}
               >
                 <Input.Password placeholder="Confirm Password" />
-              </Form.Item> */}
-              {/* <Form.Item
+              </Form.Item>
+
+              <Form.Item
                 label="Birthday"
                 name="birthday"
                 rules={[{ required: true, message: 'Please input your birthday!' }]}
               >
-                <Input placeholder="Birthday" />
-              </Form.Item> */}
+                <DatePicker placeholder="Birthday" />
+              </Form.Item>
               <Form.Item
                 label="Address"
-                name="Address"
+                name="address"
                 rules={[{ required: true, message: 'Please input your address!' }]}
               >
                 <Input placeholder="Address" />
               </Form.Item>
               <Form.Item
                 label="Telephone"
-                name="Telephone"
+                name="telephone"
                 rules={[{ required: true, message: 'Please input your telephone!' }]}
               >
                 <Input placeholder="Telephone" />
               </Form.Item>
-              <Form.Item label="Role" name="Role" rules={[{ required: true, message: 'Please input your role!' }]}>
+              <Form.Item label="Role" name="role" rules={[{ required: true, message: 'Please input your role!' }]}>
                 <Input placeholder="Role" />
               </Form.Item>
               <Form.Item
                 label="Permission"
-                name="Permission"
+                name="permission"
                 rules={[{ required: true, message: 'Please input your permission!' }]}
               >
                 <Input placeholder="Permission" />
