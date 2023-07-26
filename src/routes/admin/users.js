@@ -13,7 +13,7 @@ function PagesRoute() {
       <Route path="/*" element={<Users />} />
       <Route path="add-user/*" element={<AddUser />} />
       <Route path="dataTable" element={<DataTable />} />
-      <Route path="team" element={<Team />} />
+      <Route path="list" element={<Team />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

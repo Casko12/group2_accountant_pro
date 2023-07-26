@@ -5,18 +5,19 @@ import {
   UilCalendarAlt,
   UilCheckSquare,
   UilClipboardAlt,
-  UilCreateDashboard,
+  UilChartBar,
   UilExchange,
   UilFile,
+  UilBookOpen,
   UilHeadphones,
   UilShoppingCart,
+  UilUsersAlt,
 } from '@iconscout/react-unicons';
 import { Menu } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
 import UilEllipsisV from '@iconscout/react-unicons/icons/uil-ellipsis-v';
 import propTypes from 'prop-types';
 import { NavTitle } from './Style';
@@ -60,7 +61,7 @@ function MenuItems({ toggleCollapsed }) {
   };
 
   const items = [
-    getItem(t('Overview'), 'dashboard', !topMenu && <UilCreateDashboard />, [
+    getItem(t('Overview'), 'dashboard', !topMenu && <UilChartBar />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}`}>
           {t('Overview')}
@@ -188,7 +189,7 @@ function MenuItems({ toggleCollapsed }) {
         null,
       ),
     ]),
-    getItem(t('Income'), 'income', !topMenu && <UilBagAlt />, [
+    getItem(t('Income'), 'income', !topMenu && <UilBookOpen />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/income/view/list`}>
           {t('income')} {t('list')}
@@ -336,6 +337,29 @@ function MenuItems({ toggleCollapsed }) {
           {t('job')} {t('apply')}
         </NavLink>,
         'job-apply',
+        null,
+      ),
+    ]),
+    getItem(
+      !topMenu && <NavTitle className="ninjadash-sidebar-nav-title">{t('admin')}</NavTitle>,
+      'app-title',
+      null,
+      null,
+      'group',
+    ),
+    getItem(t('users'), 'users', !topMenu && <UilUsersAlt />, [
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/users/list`}>
+          {t('User List')}
+        </NavLink>,
+        'team',
+        null,
+      ),
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/users/add-user/info`}>
+          {t('Add')} {t('User')}
+        </NavLink>,
+        'addUser',
         null,
       ),
     ]),
