@@ -3,12 +3,12 @@ import 'antd/dist/antd.less';
 import React, { useEffect, useState, lazy } from 'react';
 import { Provider, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { ThemeProvider } from 'styled-components';
 import ProtectedRoute from './components/utilities/protectedRoute';
 import config from './config/config';
 import store from './redux/store';
-
 import Admin from './routes/admin';
 import Auth from './routes/auth';
 import './static/css/style.css';
@@ -70,6 +70,18 @@ function App() {
   return (
     <Provider store={store}>
       <ProviderConfig />
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="colored"
+      />
     </Provider>
   );
 }
