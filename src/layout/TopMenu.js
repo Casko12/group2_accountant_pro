@@ -333,12 +333,6 @@ function TopMenu() {
                   To Do
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink onClick={addParentActive} to={`${path}/app/kanban`}>
-                  <UilExpandArrowsAlt />
-                  Kanban Board
-                </NavLink>
-              </li> */}
               <li className="has-subMenu-left">
                 <Link to="#" className="parent">
                   <UilExchange />

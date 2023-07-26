@@ -235,6 +235,22 @@ function MenuItems({ toggleCollapsed }) {
         null,
       ),
     ]),
+    getItem(t('Expense'), 'expense', !topMenu && <UilBagAlt />, [
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/expense/view/list`}>
+          {t('expense')} {t('list')}
+        </NavLink>,
+        'expenseList',
+        null,
+      ),
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/expense/create`}>
+          {t('create')} {t('expense')}
+        </NavLink>,
+        'ExpenseCreate',
+        null,
+      ),
+    ]),
     getItem(
       <NavLink onClick={toggleCollapsed} to={`${path}/app/calendar/month`}>
         {t('calendar')}
@@ -335,13 +351,6 @@ function MenuItems({ toggleCollapsed }) {
         </NavLink>
       ),
     ),
-    // getItem(
-    //   <NavLink onClick={toggleCollapsed} to={`${path}/app/kanban`}>
-    //     {t('kanban Board')}
-    //   </NavLink>,
-    //   'kanban',
-    //   !topMenu && <UilExpandArrowsAlt />,
-    // ),
     getItem(`${t('import')} ${t('export')}`, 'importExport', !topMenu && <UilExchange />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/importExport/import`}>

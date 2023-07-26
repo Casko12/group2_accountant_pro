@@ -8,22 +8,22 @@ import { Cards } from '../../../components/cards/frame/cards-frame';
 import { ProjectPagination, ProjectListTitle, ProjectList } from '../style';
 import { Dropdown } from '../../../components/dropdown/dropdown';
 
-function IncomeLists() {
-  const income = useSelector((state) => state.projects.data);
+function ExpenseLists() {
+  const expense = useSelector((state) => state.projects.data);
   const [state, setState] = useState({
-    incomes: income,
+    expenses: expense,
     current: 0,
     pageSize: 0,
   });
-  const { incomes } = state;
+  const { expenses } = state;
 
   useEffect(() => {
-    if (income) {
+    if (expense) {
       setState({
-        incomes: income,
+        expenses: expense,
       });
     }
-  }, [income]);
+  }, [expense]);
 
   const onShowSizeChange = (current, pageSize) => {
     setState({ ...state, current, pageSize });
@@ -36,15 +36,15 @@ function IncomeLists() {
 
   const dataSource = [];
 
-  if (incomes.length)
-    incomes.map((value) => {
+  if (expenses.length)
+    expenses.map((value) => {
       const { id, name, date, type, amount, userId, status } = value;
       return dataSource.push({
         key: id,
-        income: (
+        expense: (
           <ProjectListTitle>
             <Heading as="h4">
-              <Link to={`/income/incomeDetails/${id}`}>{name}</Link>
+              <Link to={`/expense/expenseDetails/${id}`}>{name}</Link>
             </Heading>
           </ProjectListTitle>
         ),
@@ -75,8 +75,8 @@ function IncomeLists() {
   const columns = [
     {
       title: 'Title',
-      dataIndex: 'income',
-      key: 'income',
+      dataIndex: 'expense',
+      key: 'expense',
     },
     {
       title: 'Date',
@@ -124,7 +124,7 @@ function IncomeLists() {
       </Col>
       <Col xs={24} className="pb-30">
         <ProjectPagination>
-          {incomes.length ? (
+          {expenses.length ? (
             <Pagination
               onChange={onHandleChange}
               showSizeChanger
@@ -140,4 +140,4 @@ function IncomeLists() {
   );
 }
 
-export default IncomeLists;
+export default ExpenseLists;
