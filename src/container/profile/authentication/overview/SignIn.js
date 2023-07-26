@@ -22,12 +22,10 @@ function SignIn() {
   const [state, setState] = useState({
     checked: null,
   });
-
   const lock = new Auth0Lock(clientId, domain, auth0options);
-
   const handleSubmit = useCallback(
     (values) => {
-      dispatch(login(values, () => navigate('/')));
+      dispatch(login(values, () => navigate('/admin')));
     },
     [navigate, dispatch],
   );

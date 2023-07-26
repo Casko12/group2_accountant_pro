@@ -35,11 +35,11 @@ function SignUp() {
           </div>
           <div className="ninjadash-authentication-content">
             <Form name="register" onFinish={handleSubmit} layout="vertical">
-              <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input your Full name!' }]}>
+              <Form.Item label="Name" name="Name" rules={[{ required: true, message: 'Please input your Full name!' }]}>
                 <Input placeholder="Full name" />
               </Form.Item>
               <Form.Item
-                name="email"
+                name="Email"
                 label="Email Address"
                 rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
               >
@@ -47,10 +47,48 @@ function SignUp() {
               </Form.Item>
               <Form.Item
                 label="Password"
-                name="password"
+                name="Password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
               >
                 <Input.Password placeholder="Password" />
+              </Form.Item>
+              {/* <Form.Item
+                label="Confirm Password"
+                name="confirmpassword"
+                rules={[{ required: true, message: 'Please input your Confirmpassword!' }]}
+              >
+                <Input.Password placeholder="Confirm Password" />
+              </Form.Item> */}
+              {/* <Form.Item
+                label="Birthday"
+                name="birthday"
+                rules={[{ required: true, message: 'Please input your birthday!' }]}
+              >
+                <Input placeholder="Birthday" />
+              </Form.Item> */}
+              <Form.Item
+                label="Address"
+                name="Address"
+                rules={[{ required: true, message: 'Please input your address!' }]}
+              >
+                <Input placeholder="Address" />
+              </Form.Item>
+              <Form.Item
+                label="Telephone"
+                name="Telephone"
+                rules={[{ required: true, message: 'Please input your telephone!' }]}
+              >
+                <Input placeholder="Telephone" />
+              </Form.Item>
+              <Form.Item label="Role" name="Role" rules={[{ required: true, message: 'Please input your role!' }]}>
+                <Input placeholder="Role" />
+              </Form.Item>
+              <Form.Item
+                label="Permission"
+                name="Permission"
+                rules={[{ required: true, message: 'Please input your permission!' }]}
+              >
+                <Input placeholder="Permission" />
               </Form.Item>
               <div className="ninjadash-auth-extra-links">
                 <Checkbox onChange={onChange} checked={state.checked}>

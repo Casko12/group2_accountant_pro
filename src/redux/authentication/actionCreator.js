@@ -8,17 +8,18 @@ const login = (values, callback) => {
   return async (dispatch) => {
     dispatch(loginBegin());
     try {
-      const response = await DataService.post('/login', values);
-      if (response.data.errors) {
-        dispatch(loginErr(response.data.errors));
+      const response = await DataService.post('auth/login', JSON.stringify(values));
+      console.log(response.data);
+      if (response.data.status === 'error') {
+        dispatch(loginErr(response.data.message));
       } else {
-        Cookies.set('access_token', response.data.data.token);
+        Cookies.set('access_token', response.data.token);
         Cookies.set('logedIn', true);
         dispatch(loginSuccess(true));
         callback();
       }
     } catch (err) {
-      dispatch(loginErr(err));
+      alert(err.message);
     }
   };
 };
@@ -40,14 +41,16 @@ const register = (values) => {
   return async (dispatch) => {
     dispatch(loginBegin());
     try {
-      const response = await DataService.post('/register', values);
-      if (response.data.errors) {
+      const response = await DataService.post('auth/register', values);
+      if (response.data.status === 'error') {
         dispatch(loginErr('Registration failed!'));
+        alert(response.data.message);
       } else {
         dispatch(loginSuccess(false));
+        alert(response.data);
       }
     } catch (err) {
-      dispatch(loginErr(err));
+      alert(err.message);
     }
   };
 };

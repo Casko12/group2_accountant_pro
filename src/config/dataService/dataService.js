@@ -74,12 +74,12 @@ client.interceptors.response.use(
      * For example, on token expiration retrieve a new access token, retry a failed request etc
      */
     const { response } = error;
-    const originalRequest = error.config;
+    // const originalRequest = error.config;
     if (response) {
       if (response.status === 500) {
         // do something here
       } else {
-        return originalRequest;
+        return Promise.reject(response.data);
       }
     }
     return Promise.reject(error);
