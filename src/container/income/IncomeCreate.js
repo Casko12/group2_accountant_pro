@@ -150,7 +150,7 @@ function Income() {
                               Cancel
                             </Button>
                             <Button size="large" htmlType="submit" type="primary" raised>
-                              Save Product
+                              Save
                             </Button>
                           </Form.Item>
                         </div>

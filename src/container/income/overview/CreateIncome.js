@@ -59,7 +59,7 @@ function CreateIncome({ visible, onCancel }) {
       title="Create Income"
       visible={state.visible}
       footer={[
-        <div key="1" className="project-modal-footer">
+        <div key="2" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
             Add New Income
           </Button>
@@ -72,7 +72,7 @@ function CreateIncome({ visible, onCancel }) {
     >
       <div className="project-modal">
         <BasicFormWrapper>
-          <Form form={form} name="createProject" onFinish={handleOk}>
+          <Form form={form} name="createIncome" onFinish={handleOk}>
             <Form.Item name="project" label="">
               <Input placeholder="Project Name" />
             </Form.Item>
