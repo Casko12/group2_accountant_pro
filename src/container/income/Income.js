@@ -1,4 +1,4 @@
-import React, { lazy, useState, Suspense } from 'react';
+import React, { lazy, useState, Suspense, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Spin, Select } from 'antd';
 import { Routes, NavLink, Route, Link } from 'react-router-dom';
@@ -9,7 +9,13 @@ import CreateIncome from './overview/CreateIncome';
 import { ProjectHeader, ProjectSorting } from './style';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
 import { Button } from '../../components/buttons/buttons';
-import { filterProjectByStatus, sortingProjectByCategory } from '../../redux/project/actionCreator';
+
+import {
+  filterIncomeByStatus,
+  sortingIncomeByCategory,
+  searchIncome,
+  getIncome,
+} from '../../redux/income/actionCreator';
 import { Main } from '../styled';
 import { PageHeader } from '../../components/page-headers/page-headers';
 
@@ -19,24 +25,36 @@ const List = lazy(() => import('./overview/List'));
 function Income() {
   const dispatch = useDispatch();
   const searchData = useSelector((state) => state.headerSearchData);
-
+  const [income, setIncome] = useState([]);
   const [state, setState] = useState({
     notData: searchData,
     visible: false,
     categoryActive: 'all',
+    searchText: null,
   });
-
+  const inc = () => {
+    const i = dispatch(getIncome());
+    setIncome({
+      income: i,
+    });
+  };
+  useEffect(() => {
+    inc();
+  }, []);
   const { notData, visible } = state;
-  const handleSearch = (searchText) => {
-    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  const handleSearch = async (searchText) => {
+    const data = await dispatch(searchIncome(searchText));
     setState({
       ...state,
       notData: data,
     });
   };
 
-  const onSorting = (selectedItems) => {
-    dispatch(sortingProjectByCategory(selectedItems));
+  const onSorting = async (selectedItems) => {
+    const i = await dispatch(sortingIncomeByCategory(selectedItems));
+    setIncome({
+      income: i,
+    });
   };
 
   const onChangeCategory = (value) => {
@@ -44,7 +62,7 @@ function Income() {
       ...state,
       categoryActive: value,
     });
-    dispatch(filterProjectByStatus(value));
+    dispatch(filterIncomeByStatus(value));
   };
 
   const onCancel = () => {
@@ -64,7 +82,9 @@ function Income() {
           subTitle={<>Income List</>}
           buttons={[
             <Button type="primary" size="default">
-              <UilPlus /> Create Income
+              <Link to="/admin/income/create">
+                <UilPlus /> Create Income
+              </Link>
             </Button>,
           ]}
         />
@@ -77,29 +97,34 @@ function Income() {
                 <div className="project-sort-nav">
                   <nav>
                     <ul>
-                      <li className={state.categoryActive === 'all' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('all')} to="#">
+                      <li className={state.categoryActive === 5 ? 1 : 2}>
+                        <Link onClick={() => onChangeCategory(5)} to="#">
                           All
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'accepted' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('accepted')} to="#">
-                          In Progress
+                      <li className={state.categoryActive === 1 ? 1 : 2}>
+                        <Link onClick={() => onChangeCategory(1)} to="#">
+                          Active
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'pending' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('pending')} to="#">
-                          Complete
+                      <li className={state.categoryActive === 2 ? 2 : 3}>
+                        <Link onClick={() => onChangeCategory(2)} to="#">
+                          Pending
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'denied' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('denied')} to="#">
-                          Late
+                      <li className={state.categoryActive === 3 ? 3 : 4}>
+                        <Link onClick={() => onChangeCategory('3')} to="#">
+                          Canceling
                         </Link>
                       </li>
-                      <li className={state.categoryActive === 'canceled' ? 'active' : 'deactivate'}>
-                        <Link onClick={() => onChangeCategory('canceled')} to="#">
-                          Early
+                      <li className={state.categoryActive === 4 ? 4 : 0}>
+                        <Link onClick={() => onChangeCategory('4')} to="#">
+                          DeActive
+                        </Link>
+                      </li>
+                      <li className={state.categoryActive === 0 ? 0 : 1}>
+                        <Link onClick={() => onChangeCategory(0)} to="#">
+                          Not Accept
                         </Link>
                       </li>
                     </ul>
@@ -111,12 +136,10 @@ function Income() {
                 <div className="project-sort-group">
                   <div className="sort-group">
                     <span>Sort By:</span>
-                    <Select onChange={onSorting} defaultValue="category">
-                      <Select.Option value="category">Income Category</Select.Option>
-                      <Select.Option value="rate">Loai 1</Select.Option>
-                      <Select.Option value="popular">Loai 2</Select.Option>
-                      <Select.Option value="time">Loai 3</Select.Option>
-                      <Select.Option value="price">Loai 4</Select.Option>
+                    <Select onChange={onSorting} defaultValue="Date">
+                      <Select.Option value="Date">Date</Select.Option>
+                      <Select.Option value="Name">Title</Select.Option>
+                      <Select.Option value="Amount">Amount</Select.Option>
                     </Select>
                     <div className="layout-style">
                       <NavLink to={`${path}/grid`}>
@@ -140,8 +163,7 @@ function Income() {
               >
                 <Routes>
                   <Route index element={<Grid />} />
-                  <Route path="grid" element={<Grid />} />
-                  <Route path="list" element={<List />} />
+                  <Route path="list" element={<List income={income} />} />
                 </Routes>
               </Suspense>
             </div>

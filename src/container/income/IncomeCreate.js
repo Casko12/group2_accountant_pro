@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Input, Select, InputNumber, Upload, message, DatePicker } from 'antd';
+import { useDispatch } from 'react-redux';
 import UilExport from '@iconscout/react-unicons/icons/uil-export';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import UilDollarAlt from '@iconscout/react-unicons/icons/uil-dollar-alt';
+import { toast } from 'react-toastify';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main, BasicFormWrapper } from '../styled';
 import { Button } from '../../components/buttons/buttons';
 import { AddProductForm } from '../ecommerce/Style';
 import Heading from '../../components/heading/heading';
+import { filterSinglePage } from '../../redux/typeIncome/actionCreator';
+import { createIncome } from '../../redux/income/actionCreator';
 
 const { Option } = Select;
 const { Dragger } = Upload;
-const dateFormat = 'MM/DD/YYYY';
+const dateFormat = 'DD/MM/YYYY';
 
 function Income() {
   const PageRoutes = [
@@ -31,16 +35,20 @@ function Income() {
     list: null,
     submitValues: {},
   });
+  const dispatch = useDispatch();
 
-  const fileList = [
-    {
-      uid: '1',
-      name: '1.png',
-      status: 'done',
-      url: require('../../static/img/products/1.png'),
-      thumbUrl: require('../../static/img/products/1.png'),
-    },
-  ];
+  const [type, setType] = useState([]);
+  const Type = async () => {
+    try {
+      const t = await dispatch(filterSinglePage());
+      setType(t);
+    } catch (err) {
+      toast.error(err.Message);
+    }
+  };
+  useEffect(() => {
+    Type();
+  }, []);
 
   const fileUploadProps = {
     name: 'file',
@@ -58,7 +66,6 @@ function Income() {
       }
     },
     listType: 'picture',
-    defaultFileList: fileList,
     showUploadList: {
       showRemoveIcon: true,
       removeIcon: <UilTrashAlt />,
@@ -66,7 +73,7 @@ function Income() {
   };
 
   const handleSubmit = (values) => {
-    setState({ ...state, submitValues: values });
+    dispatch(createIncome(values));
   };
 
   return (
@@ -95,12 +102,12 @@ function Income() {
                                   <Form.Item name="description" label="Description">
                                     <Input.TextArea rows={5} />
                                   </Form.Item>
-                                  <Form.Item name="category" initialValue="" label="Category">
+                                  <Form.Item name="typefinanceinId" initialValue="" label="Category">
                                     <Select style={{ width: '100%' }}>
-                                      <Option value="">Please Select</Option>
-                                      <Option value="wearingClothes">Loai 1</Option>
-                                      <Option value="sunglasses">Loai 2</Option>
-                                      <Option value="t-shirt">Loai 3</Option>
+                                      <Option value="">Loại khoản thu</Option>
+                                      {type.map((item) => {
+                                        return <Option value={item.id}>{item.name}</Option>;
+                                      })}
                                     </Select>
                                   </Form.Item>
                                   <Form.Item name="amount" label="Amount">

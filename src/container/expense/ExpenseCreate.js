@@ -12,7 +12,7 @@ import Heading from '../../components/heading/heading';
 
 const { Option } = Select;
 const { Dragger } = Upload;
-const dateFormat = 'MM/DD/YYYY';
+const dateFormat = 'DD/MM/YYYY';
 
 function Expense() {
   const PageRoutes = [

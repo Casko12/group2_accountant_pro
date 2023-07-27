@@ -1,26 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Pagination, Tag } from 'antd';
-import { useSelector } from 'react-redux';
+import { Row, Col, Table, Pagination, Modal, Button } from 'antd';
+import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import UilEllipsisH from '@iconscout/react-unicons/icons/uil-ellipsis-h';
 import Heading from '../../../components/heading/heading';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import { ProjectPagination, ProjectListTitle, ProjectList } from '../style';
 import { Dropdown } from '../../../components/dropdown/dropdown';
+import { deleteIncome } from '../../../redux/income/actionCreator';
 
 function IncomeLists() {
-  const income = useSelector((state) => state.projects.data);
+  const income = useSelector((state) => state.income);
+  console.log(income.data);
+  const dispatch = useDispatch();
   const [state, setState] = useState({
-    incomes: income,
+    incomes: income.data,
     current: 0,
     pageSize: 0,
   });
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = (event) => {
+    const id = event.target.dataset.value;
+    dispatch(deleteIncome(id));
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   const { incomes } = state;
 
   useEffect(() => {
     if (income) {
       setState({
-        incomes: income,
+        incomes: income.data,
       });
     }
   }, [income]);
@@ -35,10 +53,22 @@ function IncomeLists() {
   };
 
   const dataSource = [];
-
   if (incomes.length)
     incomes.map((value) => {
-      const { id, name, /* date, */ type, amount, userId, status } = value;
+      const { id, name, date, type, amount, status, userCreate } = value;
+      let statusText = '';
+      if (status === 1) {
+        statusText = 'Active';
+      } else if (status === 2) {
+        statusText = 'Pending';
+      } else if (status === 3) {
+        statusText = 'Canceling';
+      } else if (status === 4) {
+        statusText = 'DeActive';
+      } else {
+        statusText = 'Not Accept';
+      }
+      const currentDate = new Date(date);
       return dataSource.push({
         key: id,
         income: (
@@ -48,19 +78,23 @@ function IncomeLists() {
             </Heading>
           </ProjectListTitle>
         ),
-        // date: { date },
-        type: { type },
-        amount: { amount },
-        userId: { userId },
-        status: <Tag className={status}>{status}</Tag>,
+        date: format(currentDate, 'dd/MM/yyyy'),
+        type,
+        amount,
+        userCreate,
+        status: statusText,
         action: (
           <Dropdown
             className="wide-dropdwon"
             content={
               <>
                 <Link to="#">View</Link>
+
                 <Link to="#">Edit</Link>
-                <Link to="#">Delete</Link>
+
+                <Button className="btn btn-danger" data-value={id} onClick={showModal}>
+                  Delete
+                </Button>
               </>
             }
           >
@@ -71,7 +105,6 @@ function IncomeLists() {
         ),
       });
     });
-
   const columns = [
     {
       title: 'Title',
@@ -82,7 +115,7 @@ function IncomeLists() {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
-      render: (date) => <p>{date}</p>,
+      // render: (date) => <p>{date}</p>,
     },
     {
       title: 'Category',
@@ -96,8 +129,8 @@ function IncomeLists() {
     },
     {
       title: 'Created By',
-      dataIndex: 'userId',
-      key: 'userId',
+      dataIndex: 'userCreate',
+      key: 'userCreate',
     },
     {
       title: 'Status',
@@ -110,9 +143,11 @@ function IncomeLists() {
       key: 'action',
     },
   ];
-
   return (
     <Row gutter={25}>
+      <Modal title="Xác nhận xóa dữ liệu" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>Bạn có chắc chắn muốn xóa dữ liệu không?</p>
+      </Modal>
       <Col xs={24}>
         <Cards headless>
           <ProjectList>
