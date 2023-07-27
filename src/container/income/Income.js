@@ -82,7 +82,7 @@ function Income() {
           subTitle={<>Income List</>}
           buttons={[
             <Button type="primary" size="default">
-              <Link to="/admin/income/create">
+              <Link to="/main/income/create">
                 <UilPlus /> Create Income
               </Link>
             </Button>,
@@ -124,7 +124,7 @@ function Income() {
                       </li>
                       <li className={state.categoryActive === 0 ? 0 : 1}>
                         <Link onClick={() => onChangeCategory(0)} to="#">
-                          Not Accept
+                          Cancel
                         </Link>
                       </li>
                     </ul>

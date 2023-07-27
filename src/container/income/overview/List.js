@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Pagination, Modal, Button } from 'antd';
+import { Row, Col, Table, Pagination, Modal, Button, Tag } from 'antd';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,9 +11,11 @@ import { Dropdown } from '../../../components/dropdown/dropdown';
 import { deleteIncome } from '../../../redux/income/actionCreator';
 
 function IncomeLists() {
-  const income = useSelector((state) => state.incomes.data);
+  const income = useSelector((state) => state.income.data);
+  console.log(income);
+  const dispatch = useDispatch();
   const [state, setState] = useState({
-    incomes: income.data,
+    incomes: income,
     current: 0,
     pageSize: 0,
   });
@@ -36,7 +38,7 @@ function IncomeLists() {
   useEffect(() => {
     if (income) {
       setState({
-        incomes: income.data,
+        incomes: income,
       });
     }
   }, [income]);
@@ -51,7 +53,7 @@ function IncomeLists() {
   };
 
   const dataSource = [];
-  if (incomes.length)
+  if (incomes && incomes.length)
     incomes.map((value) => {
       const { id, name, date, type, amount, status, userCreate } = value;
       let statusText = '';
@@ -80,7 +82,7 @@ function IncomeLists() {
         type,
         amount,
         userCreate,
-        status: statusText,
+        status: <Tag className="green">{statusText}</Tag>,
         action: (
           <Dropdown
             className="wide-dropdwon"
@@ -157,7 +159,7 @@ function IncomeLists() {
       </Col>
       <Col xs={24} className="pb-30">
         <ProjectPagination>
-          {incomes.length ? (
+          {incomes && incomes.length ? (
             <Pagination
               onChange={onHandleChange}
               showSizeChanger

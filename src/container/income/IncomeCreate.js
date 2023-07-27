@@ -71,11 +71,18 @@ function Income() {
       removeIcon: <UilTrashAlt />,
     },
   };
-
   const handleSubmit = (values) => {
-    dispatch(createIncome(values));
+    dispatch(createIncome(values))
+      .then(() => {
+        setTimeout(() => {
+          form.resetFields();
+          window.scrollTo(0, 0);
+        }, 1500);
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
-
   return (
     <>
       <PageHeader className="ninjadash-page-header-main" title="Add Income" routes={PageRoutes} />

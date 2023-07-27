@@ -51,6 +51,7 @@ class DataService {
       headers: { ...authHeader() },
     });
   }
+
   static delete(path = '', data = {}) {
     return client({
       method: 'DELETE',
