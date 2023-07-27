@@ -1,5 +1,4 @@
 import {
-  Uil500px,
   UilBagAlt,
   UilCalendarAlt,
   UilCheckSquare,
@@ -7,7 +6,6 @@ import {
   UilChartBar,
   UilExchange,
   UilBookOpen,
-  UilShoppingCart,
   UilUsersAlt,
   UilCompactDisc,
 } from '@iconscout/react-unicons';
@@ -76,64 +74,7 @@ function MenuItems({ toggleCollapsed }) {
       null,
       'group',
     ),
-    getItem(t('eCommerce'), 'ecommerce', !topMenu && <UilShoppingCart />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/products/grid`}>
-          {t('products')}
-        </NavLink>,
-        'products',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/productDetails/1`}>
-          {t('product')} {t('details')}
-        </NavLink>,
-        'productDetails',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/add-product`}>
-          {t('product')} {t('add')}
-        </NavLink>,
-        'add-product',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/edit-product`}>
-          {t('product')} {t('edit')}
-        </NavLink>,
-        'edit-product',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/cart`}>
-          {t('cart')}
-        </NavLink>,
-        'cart',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/orders`}>
-          {t('orders')}
-        </NavLink>,
-        'orders',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/sellers`}>
-          {t('sellers')}
-        </NavLink>,
-        'sellers',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/Invoice`}>
-          {t('invoices')}
-        </NavLink>,
-        'Invoice',
-        null,
-      ),
-    ]),
+
     getItem(t('Payroll'), 'ecommerce', !topMenu && <UilCompactDisc />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/payroll/create-payroll`}>
@@ -150,59 +91,7 @@ function MenuItems({ toggleCollapsed }) {
         null,
       ),
     ]),
-    getItem(`${t('social')} ${t('app')}`, 'profile', !topMenu && <Uil500px />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/profile/myProfile/overview`}>
-          {t('my')} {t('profile')}
-        </NavLink>,
-        'myProfile',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/profile/myProfile/timeline`}>
-          {t('timeline')}
-        </NavLink>,
-        'profileTimeline',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/profile/myProfile/activity`}>
-          {t('activity')}
-        </NavLink>,
-        'profileActivity',
-        null,
-      ),
-    ]),
-    getItem(t('project'), 'project', !topMenu && <UilBagAlt />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/project/view/grid`}>
-          {t('project')} {t('grid')}
-        </NavLink>,
-        'projectGrid',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/project/view/list`}>
-          {t('project')} {t('list')}
-        </NavLink>,
-        'projectList',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/project/create`}>
-          {t('create')} {t('project')}
-        </NavLink>,
-        'ProjectCreate',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/project/projectDetails/1/tasklist`}>
-          {t('project')} {t('details')}
-        </NavLink>,
-        'projectDetails',
-        null,
-      ),
-    ]),
+
     getItem(t('Income'), 'income', !topMenu && <UilBookOpen />, [
       getItem(
         <NavLink onClick={toggleCollapsed} to={`${path}/income/view/list`}>
