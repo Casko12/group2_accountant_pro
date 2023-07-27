@@ -18,6 +18,10 @@ const {
   createIncomeBegin,
   createIncomeSuccess,
   createIncomeError,
+
+  deleteIncomeBegin,
+  deleteIncomeSucces,
+  deleteIncomeError,
 } = actions;
 
 const getIncome = () => {
@@ -123,13 +127,16 @@ const searchIncome = (searchValue) => {
 };
 
 const deleteIncome = (id) => {
-  return async () => {
+  return async (dispatch) => {
+    dispatch(deleteIncomeBegin());
     const registerPromise = new Promise((resolve, reject) => {
-      DataService.delete(`incomes/${id}`)
+      DataService.delete(`incomes?id=${id}`)
         .then((response) => {
+          dispatch(deleteIncomeSucces());
           setTimeout(() => resolve(response), 1500);
         })
         .catch((error) => {
+          dispatch(deleteIncomeError());
           setTimeout(() => reject(error), 1500);
         });
     });
@@ -138,7 +145,7 @@ const deleteIncome = (id) => {
       success: 'Xóa phiếu thu thành công',
       error: {
         render({ data }) {
-          return `Xóa phiếu thu thất bại: ${data.message}`;
+          return `Xóa phiếu thu thất bại: ${data}`;
         },
         autoClose: 2500,
       },

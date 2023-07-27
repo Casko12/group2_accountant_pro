@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Pagination, Modal, Button, Tag } from 'antd';
+import { Row, Col, Table, Pagination, Modal } from 'antd';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +12,6 @@ import { deleteIncome } from '../../../redux/income/actionCreator';
 
 function IncomeLists() {
   const income = useSelector((state) => state.income.data);
-  console.log(income);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     incomes: income,
@@ -20,13 +19,15 @@ function IncomeLists() {
     pageSize: 0,
   });
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
+  const [deleteId, setDeleteId] = useState('');
+  const showModal = (id) => {
+    setDeleteId(id);
     setIsModalVisible(true);
   };
 
-  const handleOk = (event) => {
-    const id = event.target.dataset.value;
-    dispatch(deleteIncome(id));
+  const handleOk = async () => {
+    console.log(deleteId);
+    await dispatch(deleteIncome(deleteId));
     setIsModalVisible(false);
   };
 
@@ -41,7 +42,7 @@ function IncomeLists() {
         incomes: income,
       });
     }
-  }, [income]);
+  }, [incomes]);
 
   const onShowSizeChange = (current, pageSize) => {
     setState({ ...state, current, pageSize });
@@ -82,19 +83,15 @@ function IncomeLists() {
         type,
         amount,
         userCreate,
-        status: <Tag className="green">{statusText}</Tag>,
+        status: statusText,
         action: (
           <Dropdown
             className="wide-dropdwon"
             content={
               <>
                 <Link to="#">View</Link>
-
                 <Link to="#">Edit</Link>
-
-                <Button className="btn btn-danger" data-value={id} onClick={showModal}>
-                  Delete
-                </Button>
+                <input type="button" value=" Delete" onClick={() => showModal(id)} />
               </>
             }
           >

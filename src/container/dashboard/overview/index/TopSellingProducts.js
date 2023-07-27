@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Table } from 'antd';
+import { useSelector } from 'react-redux';
 import { Cards } from '../../../../components/cards/frame/cards-frame';
 import { TopSellerWrap } from '../../Style';
 import { BorderLessHeading, TableDefaultStyle } from '../../../styled';
-
-import topProduct from '../../../../demoData/table-data.json';
-
-const { topSaleProduct } = topProduct;
 
 const sellingColumns = [
   {
@@ -27,8 +25,8 @@ const sellingColumns = [
   },
   {
     title: 'Amount',
-    dataIndex: 'price',
-    key: 'price',
+    dataIndex: 'amount',
+    key: 'amount',
   },
   {
     title: 'Date created',
@@ -37,8 +35,8 @@ const sellingColumns = [
   },
   {
     title: 'Created by',
-    dataIndex: 'revenue',
-    key: 'revenue',
+    dataIndex: 'userCreate',
+    key: 'userCreate',
   },
   {
     title: 'Status',
@@ -53,10 +51,13 @@ const sellingColumns = [
 ];
 
 const TopSellingProduct = React.memo(() => {
+  const income = useSelector((state) => state.income.data);
   const [state, setState] = useState({
     sellingTab: 'today',
+    incomes: income,
   });
 
+  // const dispatch = useDispatch();
   const handleChangePeriod = (value, event) => {
     event.preventDefault();
     setState({
@@ -64,27 +65,33 @@ const TopSellingProduct = React.memo(() => {
       sellingTab: value,
     });
   };
-
+  const { incomes } = state;
+  useEffect(() => {
+    if (income) {
+      setState({
+        incomes: income,
+      });
+    }
+  }, [incomes]);
   /* State destructuring */
   const { sellingTab } = state;
 
   const sellingData = [];
-  if (topSaleProduct !== null) {
-    topSaleProduct[sellingTab].map((value) => {
-      const { key, name, img, price, sold, revenue } = value;
+  if (incomes !== null) {
+    incomes.map((value) => {
+      const { key, name, amount, date, type, userCreate } = value;
+      const currentDate = new Date(date);
       return sellingData.push({
         key,
         name: (
           <div className="product-info align-center-v">
-            <div className="product-img">
-              <img src={require(`../../../../static/img/products/electronics/${img}`)} alt="" />
-            </div>
             <span className="product-name">{name}</span>
           </div>
         ),
-        price,
-        sold,
-        revenue,
+        amount,
+        date: format(currentDate, 'dd/MM/yyyy'),
+        type,
+        userCreate,
       });
     });
   }
