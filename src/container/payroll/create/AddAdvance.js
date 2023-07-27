@@ -22,7 +22,7 @@ function AddAdvance() {
     },
     {
       path: '',
-      breadcrumbName: 'Add Product',
+      breadcrumbName: 'Add Advance',
     },
   ];
   const [form] = Form.useForm();
@@ -71,7 +71,7 @@ function AddAdvance() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Add Product" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="Add Advance" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -79,14 +79,14 @@ function AddAdvance() {
               <Row gutter={25} justify="center">
                 <Col xxl={12} md={18} xs={24}>
                   <AddProductForm>
-                    <Form style={{ width: '100%' }} form={form} name="addProduct" onFinish={handleSubmit}>
+                    <Form style={{ width: '100%' }} form={form} name="addAdvance" onFinish={handleSubmit}>
                       <BasicFormWrapper>
                         <div className="add-product-block">
                           <Row gutter={15}>
                             <Col xs={24}>
                               <div className="add-product-content">
                                 <Cards title="About Product">
-                                  <Form.Item name="name" label="Product Name">
+                                  <Form.Item name="name" label="Title">
                                     <Input />
                                   </Form.Item>
                                   <Form.Item name="subtext" label="Sub Text">
@@ -126,7 +126,7 @@ function AddAdvance() {
                                     </Radio.Group>
                                   </Form.Item>
 
-                                  <Form.Item name="description" label="Product Description">
+                                  <Form.Item name="description" label="Description">
                                     <Input.TextArea rows={5} />
                                   </Form.Item>
                                   <Form.Item name="mTitle" label="Meta Title">
@@ -174,7 +174,7 @@ function AddAdvance() {
                               Cancel
                             </Button>
                             <Button size="large" htmlType="submit" type="primary" raised>
-                              Save Product
+                              Save
                             </Button>
                           </Form.Item>
                         </div>

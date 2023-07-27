@@ -224,7 +224,7 @@ function MenuItems({ toggleCollapsed }) {
         <NavLink onClick={toggleCollapsed} to={`${path}/expense/view/list`}>
           {t('expense')} {t('list')}
         </NavLink>,
-        'expenseList',
+        'Expense',
         null,
       ),
       getItem(

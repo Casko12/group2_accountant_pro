@@ -8,7 +8,7 @@ const NotFound = lazy(() => import('../../container/pages/404'));
 function PayrollRoute() {
   return (
     <Routes>
-      <Route path="create-payroll" element={<AddPayroll />} />
+      <Route path="create-payroll/*" element={<AddPayroll />} />
       <Route path="create-advance/*" element={<AddAdvance />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

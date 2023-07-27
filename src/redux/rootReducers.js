@@ -21,6 +21,7 @@ import { readNotificationReducer } from './notification/reducers';
 import orderReducer from './orders/reducers';
 import { productReducer, SingleProductReducer } from './product/reducers';
 import { incomeReducer, SingleIncomeReducer } from './income/reducers';
+import { expenseReducer, SingleExpenseReducer } from './expense/reducers';
 import Profile from './profile/reducers';
 import { projectReducer, SingleProjectReducer } from './project/reducers';
 import { sellersReducer } from './sellers/reducers';
@@ -60,6 +61,8 @@ const rootReducers = combineReducers({
   project: SingleProjectReducer,
   incomes: incomeReducer,
   income: SingleIncomeReducer,
+  expenses: expenseReducer,
+  expense: SingleExpenseReducer,
   ChangeLayoutMode,
   cart: cartData,
   Todo,
