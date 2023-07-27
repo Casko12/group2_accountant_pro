@@ -50,7 +50,7 @@ function ProviderConfig() {
               </Routes>
             ) : (
               <Routes>
-                <Route path="/admin/*" element={<ProtectedRoute path="/*" Component={Admin} />} />
+                <Route path="/main/*" element={<ProtectedRoute path="/*" Component={Admin} />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             )}

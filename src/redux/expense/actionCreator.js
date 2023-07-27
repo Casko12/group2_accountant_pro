@@ -16,7 +16,7 @@ const {
 } = actions;
 
 const fetchData = async () => {
-  const response = await DataService.get('incomes');
+  const response = await DataService.get('expenses');
   return response.data;
 };
 const filterSinglePage = (paramsId) => {

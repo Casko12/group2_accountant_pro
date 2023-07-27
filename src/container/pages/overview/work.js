@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, DatePicker, Radio } from 'antd';
+import { Row, Col, Form, DatePicker, Radio, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
-const dateFormat = 'MM/DD/YYYY';
+const dateFormat = 'DD/MM/YYYY';
+const { Option } = Select;
 
 function Work() {
   const [form] = Form.useForm();
@@ -26,16 +27,22 @@ function Work() {
                 Work Information
               </Heading>
 
-              <Form.Item name="company" label="Company Name">
-                <Input placeholder="Company Name" />
+              <Form.Item name="department" initialValue="" label="Department">
+                <Select style={{ width: '100%' }}>
+                  <Option value="">Please Select</Option>
+                  <Option value="dept1">Dept 1</Option>
+                  <Option value="dept2">Dept 2</Option>
+                  <Option value="dept3">Dept 3</Option>
+                </Select>
               </Form.Item>
 
-              <Form.Item name="department" label="Department">
-                <Input placeholder="Department name" />
-              </Form.Item>
-
-              <Form.Item name="designation" label="Designation">
-                <Input placeholder="Designation" />
+              <Form.Item name="position" initialValue="" label="Position">
+                <Select style={{ width: '100%' }}>
+                  <Option value="">Please Select</Option>
+                  <Option value="staff">Staff</Option>
+                  <Option value="leader">Leader</Option>
+                  <Option value="manager">Manager</Option>
+                </Select>
               </Form.Item>
 
               <Form.Item name="hiringDate" rules={[{ type: 'object', whitespace: true }]} label="Hiring Date">
@@ -46,7 +53,6 @@ function Work() {
                 <Radio.Group>
                   <Radio value="active">Active</Radio>
                   <Radio value="deactivated">Deactivated</Radio>
-                  <Radio value="blocked">Blocked</Radio>
                 </Radio.Group>
               </Form.Item>
               <Form.Item>
@@ -61,7 +67,7 @@ function Work() {
                     Reset
                   </Button>
                   <Button htmlType="submit" type="primary">
-                    <Link to="/admin/users/add-user/social">Next</Link>
+                    <Link to="/main/users/add-user/social">Next</Link>
                   </Button>
                 </div>
               </Form.Item>

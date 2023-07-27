@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, Upload, Select } from 'antd';
+import { Row, Col, Form, Input, Upload, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import UilCamera from '@iconscout/react-unicons/icons/uil-camera';
 import { BasicFormWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
 import Heading from '../../../components/heading/heading';
 
-const { Option } = Select;
+const dateFormat = 'DD/MM/YYYY';
 function Info() {
   const [state, setState] = useState({
     values: '',
@@ -44,6 +44,10 @@ function Info() {
                 <Input placeholder="Input Name" />
               </Form.Item>
 
+              <Form.Item name="birthday" label="Birthday">
+                <DatePicker placeholder="dd/mm/yyyy" format={dateFormat} />
+              </Form.Item>
+
               <Form.Item
                 label="Email Address"
                 name="email"
@@ -52,30 +56,12 @@ function Info() {
                 <Input placeholder="name@example.com" />
               </Form.Item>
 
-              <Form.Item name="phone" label="Phone Number">
-                <Input placeholder="+440 2546 5236" />
+              <Form.Item label="Address" name="address">
+                <Input placeholder="Input Address" />
               </Form.Item>
 
-              <Form.Item name="country" initialValue="" label="Country">
-                <Select style={{ width: '100%' }}>
-                  <Option value="">Please Select</Option>
-                  <Option value="bangladesh">Bangladesh</Option>
-                  <Option value="india">India</Option>
-                  <Option value="pakistan">Pakistan</Option>
-                </Select>
-              </Form.Item>
-
-              <Form.Item initialValue="" name="city" label="City">
-                <Select style={{ width: '100%' }}>
-                  <Option value="">Please Select</Option>
-                  <Option value="dhaka">Dhaka</Option>
-                  <Option value="khulna">Khulna</Option>
-                  <Option value="barisal">Barisal</Option>
-                </Select>
-              </Form.Item>
-
-              <Form.Item name="website" label="Website">
-                <Input placeholder="www.example.com" />
+              <Form.Item name="telephone" label="Phone Number">
+                <Input placeholder="+84 9012 22333" />
               </Form.Item>
 
               <Form.Item>
@@ -89,7 +75,7 @@ function Info() {
                     Reset
                   </Button>
                   <Button htmlType="submit" type="primary">
-                    <Link to="/admin/users/add-user/work">Save & Next</Link>
+                    <Link to="/main/users/add-user/work">Save & Next</Link>
                   </Button>
                 </div>
               </Form.Item>

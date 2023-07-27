@@ -11,9 +11,7 @@ import { Dropdown } from '../../../components/dropdown/dropdown';
 import { deleteIncome } from '../../../redux/income/actionCreator';
 
 function IncomeLists() {
-  const income = useSelector((state) => state.income);
-  console.log(income.data);
-  const dispatch = useDispatch();
+  const income = useSelector((state) => state.incomes.data);
   const [state, setState] = useState({
     incomes: income.data,
     current: 0,

@@ -25,7 +25,7 @@ function SignIn() {
   const lock = new Auth0Lock(clientId, domain, auth0options);
   const handleSubmit = useCallback(
     (values) => {
-      dispatch(login(values, () => navigate('/admin')));
+      dispatch(login(values, () => navigate('/main')));
     },
     [navigate, dispatch],
   );

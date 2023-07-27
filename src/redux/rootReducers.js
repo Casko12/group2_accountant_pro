@@ -20,8 +20,7 @@ import Note from './note/reducers';
 import { readNotificationReducer } from './notification/reducers';
 import orderReducer from './orders/reducers';
 import { productReducer, SingleProductReducer } from './product/reducers';
-import { SingleIncomeReducer } from './income/reducers';
-import { SingleTypeIncomeReducer } from './typeIncome/reducers';
+import { incomeReducer, SingleIncomeReducer } from './income/reducers';
 import Profile from './profile/reducers';
 import { projectReducer, SingleProjectReducer } from './project/reducers';
 import { sellersReducer } from './sellers/reducers';
@@ -61,8 +60,6 @@ const rootReducers = combineReducers({
   project: SingleProjectReducer,
 
   income: SingleIncomeReducer,
-
-  typeIncom: SingleTypeIncomeReducer,
   ChangeLayoutMode,
   cart: cartData,
   Todo,

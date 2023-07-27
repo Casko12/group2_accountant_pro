@@ -27,7 +27,7 @@ const ProductCardsList = React.memo(({ product }) => {
           <Col md={12} xs={24}>
             <div className="product-single-description">
               <Heading className="product-single-title" as="h5">
-                <NavLink to={`/admin/ecommerce/productDetails/${id}`}>{name}</NavLink>
+                <NavLink to={`/main/ecommerce/productDetails/${id}`}>{name}</NavLink>
               </Heading>
               <p>{description}</p>
             </div>

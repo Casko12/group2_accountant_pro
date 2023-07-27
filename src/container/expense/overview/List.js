@@ -9,7 +9,7 @@ import { ProjectPagination, ProjectListTitle, ProjectList } from '../style';
 import { Dropdown } from '../../../components/dropdown/dropdown';
 
 function ExpenseLists() {
-  const expense = useSelector((state) => state.projects.data);
+  const expense = useSelector((state) => state.expenses.data);
   const [state, setState] = useState({
     expenses: expense,
     current: 0,

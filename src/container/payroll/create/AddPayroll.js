@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, Select, InputNumber, Upload, message, DatePicker } from 'antd';
+import { Row, Col, Form, Input, Select, InputNumber, Radio, Upload, message } from 'antd';
 import UilExport from '@iconscout/react-unicons/icons/uil-export';
 import UilTrashAlt from '@iconscout/react-unicons/icons/uil-trash-alt';
 import UilDollarAlt from '@iconscout/react-unicons/icons/uil-dollar-alt';
-import { PageHeader } from '../../components/page-headers/page-headers';
-import { Cards } from '../../components/cards/frame/cards-frame';
-import { Main, BasicFormWrapper } from '../styled';
-import { Button } from '../../components/buttons/buttons';
-import { AddProductForm } from '../ecommerce/Style';
-import Heading from '../../components/heading/heading';
+import UilPercentage from '@iconscout/react-unicons/icons/uil-percentage';
+import { PageHeader } from '../../../components/page-headers/page-headers';
+import { Cards } from '../../../components/cards/frame/cards-frame';
+import { Main, BasicFormWrapper } from '../../styled';
+import { Button } from '../../../components/buttons/buttons';
+import { AddProductForm } from '../Style';
+import Heading from '../../../components/heading/heading';
 
 const { Option } = Select;
 const { Dragger } = Upload;
-const dateFormat = 'DD/MM/YYYY';
 
-function Expense() {
+function AddPayroll() {
   const PageRoutes = [
     {
       path: '/main',
@@ -22,7 +22,7 @@ function Expense() {
     },
     {
       path: '',
-      breadcrumbName: 'Add Expense',
+      breadcrumbName: 'Add Payroll',
     },
   ];
   const [form] = Form.useForm();
@@ -37,8 +37,8 @@ function Expense() {
       uid: '1',
       name: '1.png',
       status: 'done',
-      url: require('../../static/img/products/1.png'),
-      thumbUrl: require('../../static/img/products/1.png'),
+      url: require('../../../static/img/products/1.png'),
+      thumbUrl: require('../../../static/img/products/1.png'),
     },
   ];
 
@@ -71,7 +71,7 @@ function Expense() {
 
   return (
     <>
-      <PageHeader className="ninjadash-page-header-main" title="Add Expense" routes={PageRoutes} />
+      <PageHeader className="ninjadash-page-header-main" title="Add Product" routes={PageRoutes} />
       <Main>
         <Row gutter={15}>
           <Col xs={24}>
@@ -79,37 +79,61 @@ function Expense() {
               <Row gutter={25} justify="center">
                 <Col xxl={12} md={18} xs={24}>
                   <AddProductForm>
-                    <Form style={{ width: '100%' }} form={form} name="addExpense" onFinish={handleSubmit}>
+                    <Form style={{ width: '100%' }} form={form} name="addProduct" onFinish={handleSubmit}>
                       <BasicFormWrapper>
                         <div className="add-product-block">
                           <Row gutter={15}>
                             <Col xs={24}>
                               <div className="add-product-content">
-                                <Cards title="Add new Expense">
-                                  <Form.Item name="name" label="Title">
+                                <Cards title="About Product">
+                                  <Form.Item name="name" label="Product Name">
                                     <Input />
                                   </Form.Item>
-                                  <Form.Item name="date" label="Date">
-                                    <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
-                                  </Form.Item>
-                                  <Form.Item name="description" label="Description">
-                                    <Input.TextArea rows={5} />
+                                  <Form.Item name="subtext" label="Sub Text">
+                                    <Input />
                                   </Form.Item>
                                   <Form.Item name="category" initialValue="" label="Category">
                                     <Select style={{ width: '100%' }}>
                                       <Option value="">Please Select</Option>
-                                      <Option value="wearingClothes">Loai 1</Option>
-                                      <Option value="sunglasses">Loai 2</Option>
-                                      <Option value="t-shirt">Loai 3</Option>
+                                      <Option value="wearingClothes">Wearing Clothes</Option>
+                                      <Option value="sunglasses">Sunglasses</Option>
+                                      <Option value="t-shirt">T-Shirt</Option>
                                     </Select>
                                   </Form.Item>
-                                  <Form.Item name="amount" label="Amount">
+
+                                  <Form.Item name="price" label="Price">
                                     <div className="input-prepend-wrap">
                                       <span className="input-prepend">
                                         <UilDollarAlt />
                                       </span>
                                       <InputNumber style={{ width: '100%' }} />
                                     </div>
+                                  </Form.Item>
+
+                                  <Form.Item name="discount" label="Discount">
+                                    <div className="input-prepend-wrap">
+                                      <span className="input-prepend f">
+                                        <UilPercentage />
+                                      </span>
+                                      <InputNumber style={{ width: '100%' }} />
+                                    </div>
+                                  </Form.Item>
+
+                                  <Form.Item name="status" label="Status">
+                                    <Radio.Group>
+                                      <Radio value="Published">Published</Radio>
+                                      <Radio value="Draft">Draft</Radio>
+                                    </Radio.Group>
+                                  </Form.Item>
+
+                                  <Form.Item name="description" label="Product Description">
+                                    <Input.TextArea rows={5} />
+                                  </Form.Item>
+                                  <Form.Item name="mTitle" label="Meta Title">
+                                    <Input />
+                                  </Form.Item>
+                                  <Form.Item name="mKeyword" label="Meta Keyword">
+                                    <Input />
                                   </Form.Item>
                                 </Cards>
                               </div>
@@ -121,7 +145,7 @@ function Expense() {
                           <Row gutter={15}>
                             <Col xs={24}>
                               <div className="add-product-content">
-                                <Cards title="Upload Document(s)">
+                                <Cards title="Product Image">
                                   <Dragger {...fileUploadProps}>
                                     <p className="ant-upload-drag-icon">
                                       <UilExport />
@@ -150,7 +174,7 @@ function Expense() {
                               Cancel
                             </Button>
                             <Button size="large" htmlType="submit" type="primary" raised>
-                              Save
+                              Save Product
                             </Button>
                           </Form.Item>
                         </div>
@@ -167,4 +191,4 @@ function Expense() {
   );
 }
 
-export default Expense;
+export default AddPayroll;
