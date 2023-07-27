@@ -17,7 +17,7 @@ const dateFormat = 'MM/DD/YYYY';
 function Expense() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/main',
       breadcrumbName: 'Dashboard',
     },
     {

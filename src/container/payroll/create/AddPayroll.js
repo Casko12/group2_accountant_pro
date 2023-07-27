@@ -17,7 +17,7 @@ const { Dragger } = Upload;
 function AddPayroll() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/main',
       breadcrumbName: 'Dashboard',
     },
     {

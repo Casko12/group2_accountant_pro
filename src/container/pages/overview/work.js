@@ -67,7 +67,7 @@ function Work() {
                     Reset
                   </Button>
                   <Button htmlType="submit" type="primary">
-                    <Link to="/admin/users/add-user/social">Next</Link>
+                    <Link to="/main/users/add-user/social">Next</Link>
                   </Button>
                 </div>
               </Form.Item>

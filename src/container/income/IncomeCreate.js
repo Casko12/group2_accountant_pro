@@ -17,7 +17,7 @@ const dateFormat = 'MM/DD/YYYY';
 function Income() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/main',
       breadcrumbName: 'Dashboard',
     },
     {

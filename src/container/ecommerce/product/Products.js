@@ -18,7 +18,7 @@ const List = lazy(() => import('./overview/List'));
 function Product() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/main',
       breadcrumbName: 'Dashboard',
     },
     {

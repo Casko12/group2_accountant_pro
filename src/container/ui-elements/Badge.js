@@ -34,7 +34,7 @@ const colors = [
 function Badges() {
   const PageRoutes = [
     {
-      path: '/admin',
+      path: '/main',
       breadcrumbName: 'Dashboard',
     },
     {

@@ -39,7 +39,7 @@ function MenuItems({ toggleCollapsed }) {
     };
   });
 
-  const path = '/admin/';
+  const path = '/main/';
 
   const pathName = window.location.pathname;
   const pathArray = pathName ? pathName.split(path) : [];
