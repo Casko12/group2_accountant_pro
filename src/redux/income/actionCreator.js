@@ -26,6 +26,7 @@ const getIncome = () => {
       dispatch(singleIncomeBegin());
       const response = await DataService.get('incomes');
       dispatch(singleIncomeSuccess(response.data));
+      console.log(response.data);
       return response.data;
     } catch (err) {
       dispatch(singleIncomeErr(err.message));
@@ -66,7 +67,6 @@ const sortingIncomeByCategory = (sortBy) => {
       setTimeout(() => {
         dispatch(sortingIncomeSuccess(response.data));
       }, 500);
-      console.log(response.data);
       return response.data;
     } catch (err) {
       dispatch(sortingIncomeErr(err.message));
@@ -114,7 +114,6 @@ const searchIncome = (searchValue) => {
       setTimeout(() => {
         dispatch(sortingIncomeSuccess(response.data));
       }, 500);
-      console.log(response.data);
 
       return response.data;
     } catch (err) {
