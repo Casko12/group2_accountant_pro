@@ -25,7 +25,7 @@ function FileListCard({ title }) {
         <div className="file-list__single d-flex">
           <div className="file-single-info d-flex">
             <div className="file-single-logo">
-              <img src={require(`../../../static/img/files/pdf.png`)} alt="File Logo" />
+              <img src={require(`../../../static/img/files/jpg.png`)} alt="File Logo" />
             </div>
             <div className="file-single__content">
               <span className="file-name">Document 1.jpg</span>
@@ -41,7 +41,7 @@ function FileListCard({ title }) {
         <div className="file-list__single d-flex">
           <div className="file-single-info d-flex">
             <div className="file-single-logo">
-              <img src={require(`../../../static/img/files/psd.png`)} alt="File Logo" />
+              <img src={require(`../../../static/img/files/jpg.png`)} alt="File Logo" />
             </div>
             <div className="file-single__content">
               <span className="file-name">Document 2.jpg</span>
@@ -73,7 +73,7 @@ function FileListCard({ title }) {
         <div className="file-list__single d-flex">
           <div className="file-single-info d-flex">
             <div className="file-single-logo">
-              <img src={require(`../../../static/img/files/png.png`)} alt="File Logo" />
+              <img src={require(`../../../static/img/files/jpg.png`)} alt="File Logo" />
             </div>
             <div className="file-single__content">
               <span className="file-name">Document 4.jpg</span>
