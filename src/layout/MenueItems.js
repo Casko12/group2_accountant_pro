@@ -218,6 +218,13 @@ function MenuItems({ toggleCollapsed }) {
         'IncomeCreate',
         null,
       ),
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/income/incomeDetails`}>
+          {t('income')} {t('details')}
+        </NavLink>,
+        'incomeDetails',
+        null,
+      ),
     ]),
     getItem(t('Expense'), 'expense', !topMenu && <UilBagAlt />, [
       getItem(

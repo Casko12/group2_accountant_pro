@@ -56,7 +56,7 @@ function ProviderConfig() {
             )}
             {isLoggedIn && (path === process.env.PUBLIC_URL || path === `${process.env.PUBLIC_URL}/`) && (
               <Routes>
-                <Route path="/" element={<Navigate to="/" />} />
+                <Route path="/" element={<Navigate to="/main" />} />
               </Routes>
             )}
           </Router>
