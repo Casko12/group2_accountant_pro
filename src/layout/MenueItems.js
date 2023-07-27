@@ -1,17 +1,15 @@
 import {
   Uil500px,
   UilBagAlt,
-  UilBookReader,
   UilCalendarAlt,
   UilCheckSquare,
   UilClipboardAlt,
   UilChartBar,
   UilExchange,
-  UilFile,
   UilBookOpen,
-  UilHeadphones,
   UilShoppingCart,
   UilUsersAlt,
+  UilCompactDisc,
 } from '@iconscout/react-unicons';
 import { Menu } from 'antd';
 import React from 'react';
@@ -118,7 +116,7 @@ function MenuItems({ toggleCollapsed }) {
         <NavLink onClick={toggleCollapsed} to={`${path}/ecommerce/orders`}>
           {t('orders')}
         </NavLink>,
-        'orsers',
+        'orders',
         null,
       ),
       getItem(
@@ -133,6 +131,22 @@ function MenuItems({ toggleCollapsed }) {
           {t('invoices')}
         </NavLink>,
         'Invoice',
+        null,
+      ),
+    ]),
+    getItem(t('Payroll'), 'ecommerce', !topMenu && <UilCompactDisc />, [
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/payroll/create-payroll`}>
+          {t('create')} {t('payroll')}
+        </NavLink>,
+        'create-payroll',
+        null,
+      ),
+      getItem(
+        <NavLink onClick={toggleCollapsed} to={`${path}/payroll/create-advance`}>
+          {t('create')} {t('advance')}
+        </NavLink>,
+        'create-advance',
         null,
       ),
     ]),
@@ -194,7 +208,7 @@ function MenuItems({ toggleCollapsed }) {
         <NavLink onClick={toggleCollapsed} to={`${path}/income/view/list`}>
           {t('income')} {t('list')}
         </NavLink>,
-        'incomeList',
+        'Income',
         null,
       ),
       getItem(
@@ -271,75 +285,7 @@ function MenuItems({ toggleCollapsed }) {
         null,
       ),
     ]),
-    getItem(
-      <NavLink onClick={toggleCollapsed} to={`${path}/app/task/all`}>
-        {t('task')}
-      </NavLink>,
-      'task',
-      !topMenu && <UilFile />,
-    ),
-    getItem(t('support'), 'supports', !topMenu && <UilHeadphones />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/support/tickets`}>
-          {t('support')}
-        </NavLink>,
-        'support',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/support/tickets/add`}>
-          {t('add')} {t('support')}
-        </NavLink>,
-        'add-support',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/support/ticketDetails/01`}>
-          {t('view')} {t('support')}
-        </NavLink>,
-        'view-support',
-        null,
-      ),
-    ]),
-    getItem(`${t('learning')} ${t('app')}`, 'course', !topMenu && <UilBookReader />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/course`}>
-          {t('courses')}
-        </NavLink>,
-        'course-list',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/course/courseDetails/1`}>
-          {t('course')} {t('single')}
-        </NavLink>,
-        'single-course',
-        null,
-      ),
-    ]),
-    getItem(`${t('jobs')} ${t('search')}`, 'job-search', !topMenu && <UilHeadphones />, [
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/jobs/grid`}>
-          {t('jobs')}
-        </NavLink>,
-        'jobs',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/jobDetails/1`}>
-          {t('jobs')} {t('details')}
-        </NavLink>,
-        'job-details',
-        null,
-      ),
-      getItem(
-        <NavLink onClick={toggleCollapsed} to={`${path}/app/job/apply`}>
-          {t('job')} {t('apply')}
-        </NavLink>,
-        'job-apply',
-        null,
-      ),
-    ]),
+
     getItem(
       !topMenu && <NavTitle className="ninjadash-sidebar-nav-title">{t('admin')}</NavTitle>,
       'app-title',
